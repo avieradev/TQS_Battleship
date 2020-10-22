@@ -19,10 +19,19 @@ public class TestBarco {
 		Barco barcoPrueba = new Barco(3);
 		assertEquals(barcoPrueba.getEstadoParte(0), 0);
 	}
-	@Test
+	
+	//@Test
 	public void testTocarParte() {
 		Barco barcoPrueba = new Barco(3);
 		barcoPrueba.setTocadoParte(0);
 		assertEquals(barcoPrueba.getEstadoParte(0), 1);
+	}
+	
+	@Test
+	public void testGetHundido() {
+		Barco barcoPrueba = new Barco(2);
+		barcoPrueba.setTocadoParte(0);
+		barcoPrueba.setTocadoParte(1);
+		assertTrue(barcoPrueba.getHundido());
 	}
 }

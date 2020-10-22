@@ -13,8 +13,10 @@ public class Barco {
 			public void setTocadoParte(int posicion) {
 				estado[posicion] = 1;
 			}
-			public boolean getEstado() {
-				
+			public boolean getHundido() {
+				for (int x = 0; x < tamano; x ++) {
+					if((estado[x]) == 0) return false;
+				}
 				return true;
 			}
 			public int getEstadoParte(int posicion) {

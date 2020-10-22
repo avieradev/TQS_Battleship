@@ -14,10 +14,15 @@ public class TestBarco {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testEstadoBarco() {
+	//@Test
+	public void testEstadoParte() {
 		Barco barcoPrueba = new Barco(3);
 		assertEquals(barcoPrueba.getEstadoParte(0), 0);
 	}
-
+	@Test
+	public void testTocarParte() {
+		Barco barcoPrueba = new Barco(3);
+		barcoPrueba.setTocadoParte(0);
+		assertEquals(barcoPrueba.getEstadoParte(0), 1);
+	}
 }

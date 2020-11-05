@@ -14,13 +14,13 @@ public class TestBarco {
 	public void tearDown() throws Exception {
 	}
 
-	//@Test
+	@Test
 	public void testEstadoParte() {
 		Barco barcoPrueba = new Barco(3);
 		assertEquals(barcoPrueba.getEstadoParte(0), 0);
 	}
 	
-	//@Test
+	@Test
 	public void testTocarParte() {
 		Barco barcoPrueba = new Barco(3);
 		barcoPrueba.setTocadoParte(0);
@@ -33,5 +33,7 @@ public class TestBarco {
 		barcoPrueba.setTocadoParte(0);
 		barcoPrueba.setTocadoParte(1);
 		assertTrue(barcoPrueba.getHundido());
+		Barco barcoPrueba_2 = new Barco(2);
+		assertFalse(barcoPrueba_2.getHundido());
 	}
 }

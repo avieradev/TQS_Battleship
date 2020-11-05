@@ -1,4 +1,3 @@
-
 public class Barco {
 	protected int tamano;
 	protected int estado[]; //array de 0 al iniciar, posicion de 1 cuando tocado

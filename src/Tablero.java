@@ -25,6 +25,7 @@ public class Tablero {
     }
     
     public void printTablero() {
+    	System.out.print("\t");
     	for (int head = 0; head < 10; head ++) {
     		switch (head) {
 			case 0:
@@ -59,8 +60,9 @@ public class Tablero {
 				break;
 			}
     	}
-    	System.out.print("\n");
+    	System.out.print("\n\n");
     	for (int f = 0;f < FILAS; f ++) {
+    		System.out.print(f + "\t");
     		for (int c = 0;c < COLUMNAS; c ++) {
     			if(tableroJuego[f][c].getRevelada()) {
     				
@@ -77,18 +79,71 @@ public class Tablero {
     public void setBarcosAleatorios() {
     	//empiezo con barcos de 3 posiciones
     	int barcosColocados = 0;
-    	int Random; //1 arriba, 2 dercha, 3 abajo, 4 izquierda
     	while (barcosColocados != totalBarcos) {
+    		int posicionRandom = generarRandom(3); //0 arriba, 1 dercha, 2 abajo, 3 izquierda
     		int cRand = generarRandom(9);
     		int fRand = generarRandom(9);
+    		switch(posicionRandom) {
+    		case 0:
+    			
+    			if(compruebaAislada(fRand, cRand)) {
+    				if(compruebaAislada(fRand - 1, cRand)) {
+    					if(compruebaAislada(fRand - 2, cRand)) {
+    						
+    						setEstadoCasilla(fRand, cRand, 1);
+    						setEstadoCasilla(fRand - 1, cRand, 1);
+    						setEstadoCasilla(fRand - 2, cRand, 1);
+    						barcosColocados++;
+    					}
+    				}
+    			}
+    		case 1:
+    			
+    			if(compruebaAislada(fRand, cRand)) {
+    				if(compruebaAislada(fRand, cRand + 1)) {
+    					if(compruebaAislada(fRand, cRand + 2)) {
+    						
+    						setEstadoCasilla(fRand, cRand + 1, 1);
+    						setEstadoCasilla(fRand, cRand + 2, 1);
+    						setEstadoCasilla(fRand, cRand, 1);
+    						barcosColocados++;
+    					}
+    				}
+    			}
+    		case 2:
+    			
+    			if(compruebaAislada(fRand, cRand)) {
+    				if(compruebaAislada(fRand + 1, cRand)) {
+    					if(compruebaAislada(fRand + 2, cRand)) {
+    						
+    						setEstadoCasilla(fRand + 1, cRand, 1);
+    						setEstadoCasilla(fRand + 2, cRand, 1);
+    						setEstadoCasilla(fRand, cRand, 1);
+    						barcosColocados++;
+    					}
+    				}
+    			}
+    		case 3:
+    			
+    			if(compruebaAislada(fRand, cRand)) {
+    				if(compruebaAislada(fRand, cRand - 1)) {
+    					if(compruebaAislada(fRand, cRand - 2)) {
+    						
+    						setEstadoCasilla(fRand, cRand - 1, 1);
+    						setEstadoCasilla(fRand, cRand - 2, 1);
+    						setEstadoCasilla(fRand, cRand, 1);
+    						barcosColocados++;
+    					}
+    				}
+    			}
     		
-    			setEstadoCasilla(fRand, cRand, 1);
+    		}
     		
-    		barcosColocados++;
     	}
     }
     
     public boolean compruebaAislada(int f, int c) {
+    	if(f < 0 || f > 9 || c < 0 || c > 9) return false;
     	//primero compruebo las cuatro esquinas del tablero
     	if(f == 0 && c == 0) {
     		return compruebaCasillaVacia(f + 1, c) && compruebaCasillaVacia(f, c+1);

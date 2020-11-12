@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Juego {
 
@@ -6,10 +7,17 @@ public class Juego {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		Tablero tablero = new Tablero(4);
+		Jugador jugador = new Jugador("Adri");
 		tablero.setBarcosAleatorios();
-		tablero.printTablero();	
+		boolean ganar = false;
+		while(!ganar) {
+			tablero.printTablero();	
+			Scanner sc = new Scanner(System.in);
+			jugador.insertaFila(sc);
+			
+		}
 	}
 
 }

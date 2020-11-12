@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.Scanner;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +22,8 @@ public class TestJugador {
 	}
 	
 	@Test void testInsertafila() {
-		
-		assertEquals(jugadorPrueba.insertaFila(), 3);
+		Scanner sc = new Scanner(System.in);
+		assertEquals(jugadorPrueba.insertaFila(sc), 3);
 	}
 
 }

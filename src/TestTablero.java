@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestTablero {
-	Tablero tableroPrueba = new Tablero();
+	Tablero tableroPrueba = new Tablero(4);
     @Before
     public void setUp() throws Exception {
     }
@@ -19,12 +19,15 @@ public class TestTablero {
         tableroPrueba.setEstadoCasilla(1, 1, 0);
         assertEquals(tableroPrueba.getEstadoCasilla(1,1), 0);
     }
-    @Test
+    //@Test
     public void testSetBarcosAleatorios() {
     	tableroPrueba.setBarcosAleatorios();
     	
     }
-    
+    @Test
+    public void testGenerarRandom() {
+    	assertEquals(tableroPrueba.generarRandom(1), 1);
+    }
     
 
 }

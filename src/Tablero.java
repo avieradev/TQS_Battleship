@@ -69,16 +69,29 @@ public class Tablero {
     }
     
     public void setBarcosAleatorios() {
-    	int BarcosColocados = 0;
+    	int barcosColocados = 0;
     	int Random; //1 arriba, 2 dercha, 3 abajo, 4 izquierda
-    	while (BarcosColocados != totalBarcos) {
-    		
+    	while (barcosColocados != totalBarcos) {
+    		int columnaRand = generarRandom(10);
+    		int filaRand = generarRandom(10);
+    		if(tableroJuego[columnaRand][filaRand].getEstado() == 0) {
+    			if(columnaRand == 0 && filaRand == 0) {
+    				if(tableroJuego[columnaRand + 1][filaRand].getEstado() == 0) {
+    					
+    				}
+    			}
+    		}
+    		barcosColocados++;
     	}
+    }
+    
+    public boolean compruebaCasilla() {
+    	return true;
     }
     
     public int generarRandom(int max) {
     	int valorDado = (int)(Math.random()*max+1);
-    	return 1;
+    	return valorDado;
     }
 
 }

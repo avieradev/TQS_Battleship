@@ -29,5 +29,9 @@ public class TestTablero {
     	assertEquals(tableroPrueba.generarRandom(1), 1);
     }
     
+    @Test
+    public void compruebaCasilla() {
+    	assertEquals(tableroPrueba.getEstadoCasilla(0, 0), 0);
+    }
 
 }

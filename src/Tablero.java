@@ -1,27 +1,30 @@
+import java.util.Random;
+
 public class Tablero {
-    public Casilla [][] tableroJuego = new Casilla[10][10];
+	final int FILAS = 10, COLUMNAS = 10;
+    public Casilla [][] tableroJuego = new Casilla[FILAS][COLUMNAS];
     protected int totalBarcos;
 
     public Tablero(int totalBarcos) {
     	this.totalBarcos = totalBarcos;
-    	for (int col = 0; col < 10; col ++) {
-    		for (int row = 0; row < 10; row ++) {
-    			tableroJuego[col][row] = new Casilla();
+    	for (int f = 0; f < FILAS; f ++) {
+    		for (int c = 0; c < COLUMNAS ; c ++) {
+    			tableroJuego[f][c] = new Casilla();
     		}
     	}
     }
 
-    public int getEstadoCasilla(int col, int row) {
-        return tableroJuego[col][row].getEstado();
+    public int getEstadoCasilla(int f, int c) {
+        return tableroJuego[f][c].getEstado();
 
     }
 
-    public void setEstadoCasilla(int col, int row, int estado) {
-        tableroJuego[col][row].setEstado(estado);
+    public void setEstadoCasilla(int f, int c, int estado) {
+    	
+        tableroJuego[f][c].setEstado(estado);
     }
     
     public void printTablero() {
-    	System.out.print("\t");
     	for (int head = 0; head < 10; head ++) {
     		switch (head) {
 			case 0:
@@ -57,10 +60,13 @@ public class Tablero {
 			}
     	}
     	System.out.print("\n");
-    	for (int col = 0;col < 10; col ++) {
-    		System.out.print(col + "\t");
-    		for (int row = 0;row < 10; row ++) {
-    			if (tableroJuego[col][row].getEstado() == 0) {
+    	for (int f = 0;f < FILAS; f ++) {
+    		for (int c = 0;c < COLUMNAS; c ++) {
+    			if(tableroJuego[f][c].getRevelada()) {
+    				
+    				System.out.print(getEstadoCasilla(f,c) + "\t");
+    			}
+    			else {
     				System.out.print("-" + "\t");
     			}
     		}
@@ -69,73 +75,70 @@ public class Tablero {
     }
     
     public void setBarcosAleatorios() {
+    	//empiezo con barcos de 3 posiciones
     	int barcosColocados = 0;
     	int Random; //1 arriba, 2 dercha, 3 abajo, 4 izquierda
     	while (barcosColocados != totalBarcos) {
-    		int columnaRand = generarRandom(10);
-    		int filaRand = generarRandom(10);
-    		if(compruebaCasillaVacia(columnaRand, filaRand)) {
-    			if(columnaRand == 0 && filaRand == 0) {
-    				if(compruebaCasillaVacia(columnaRand + 1, filaRand)) {
-    					
-    				}
-    			}
-    		}
+    		int cRand = generarRandom(9);
+    		int fRand = generarRandom(9);
+    		
+    			setEstadoCasilla(fRand, cRand, 1);
+    		
     		barcosColocados++;
     	}
     }
     
-    public boolean compruebaAislada(int col, int row) {
+    public boolean compruebaAislada(int f, int c) {
     	//primero compruebo las cuatro esquinas del tablero
-    	if(col == 0 && row == 0) {
-    		return compruebaCasillaVacia(col + 1, row) && compruebaCasillaVacia(col, row+1);
-    
+    	if(f == 0 && c == 0) {
+    		return compruebaCasillaVacia(f + 1, c) && compruebaCasillaVacia(f, c+1);
     	}
-    	if(col == 9 && row == 9) {
-    		return compruebaCasillaVacia(col - 1, row) && compruebaCasillaVacia(col, row-1);
+    	if(f == 9 && c == 9) {
+    		return compruebaCasillaVacia(f - 1, c) && compruebaCasillaVacia(f, c-1);
     	}
-    	if(col == 0 && row == 9) {
-    		return compruebaCasillaVacia(col + 1, row) && compruebaCasillaVacia(col, row-1);
+    	if(f == 0 && c == 9) {
+    		return compruebaCasillaVacia(f + 1, c) && compruebaCasillaVacia(f, c-1);
     	}
-    	if(col == 9 && row == 0) {
-    		return compruebaCasillaVacia(col - 1, row) && compruebaCasillaVacia(col, row+1);
+    	if(f == 9 && c == 0) {
+    		return compruebaCasillaVacia(f - 1, c) && compruebaCasillaVacia(f, c+1);
     	}
     	//ahora compruebo los bordes izquierda y derecha
-    	if(col == 0) {
-    		return compruebaCasillaVacia(col - 1, row) 
-    				&& compruebaCasillaVacia(col + 1, row) 
-    				&& compruebaCasillaVacia(col, row + 1);
+    	if(f == 0) {
+    		return compruebaCasillaVacia(f + 1, c) 
+    				&& compruebaCasillaVacia(f, c -1) 
+    				&& compruebaCasillaVacia(f, c + 1);
     	}
-    	if(col == 9) {
-    		return compruebaCasillaVacia(col - 1, row) 
-    				&& compruebaCasillaVacia(col + 1, row) 
-    				&& compruebaCasillaVacia(col, row - 1);
+    	if(f == 9) {
+    		return compruebaCasillaVacia(f - 1, c) 
+    				&& compruebaCasillaVacia(f, c + 1) 
+    				&& compruebaCasillaVacia(f, c - 1);
     	}
     	//ahora compuerbo los bordes arriba y abajo
-    	if(row == 0) {
-    		return compruebaCasillaVacia(col + 1, row) 
-    				&& compruebaCasillaVacia(col, row + 1) 
-    				&& compruebaCasillaVacia(col, row - 1);
+    	if(c == 0) {
+    		return compruebaCasillaVacia(f, c + 1) 
+    				&& compruebaCasillaVacia(f + 1, c ) 
+    				&& compruebaCasillaVacia(f - 1, c);
     	}
-    	if(row == 9) {
-    		return compruebaCasillaVacia(col - 1, row) 
-    				&& compruebaCasillaVacia(col, row + 1) 
-    				&& compruebaCasillaVacia(col, row - 1);
+    	if(c == 9) {
+    		return compruebaCasillaVacia(f, c - 1) 
+    				&& compruebaCasillaVacia(f + 1, c) 
+    				&& compruebaCasillaVacia(f - 1, c);
     	}
     	//ahora compruebo cualquier casilla en medio
-    	return compruebaCasillaVacia(col - 1, row) 
-    			&& compruebaCasillaVacia(col + 1, row) 
-    			&& compruebaCasillaVacia(col, row + 1) 
-    			&& compruebaCasillaVacia(col, row - 1);
+    	return compruebaCasillaVacia(f - 1, c) 
+    			&& compruebaCasillaVacia(f + 1, c) 
+    			&& compruebaCasillaVacia(f, c + 1) 
+    			&& compruebaCasillaVacia(f, c - 1);
     	
     }
     
-    public boolean compruebaCasillaVacia(int col, int row) {
-    	return getEstadoCasilla(col, row) == 0;
+    public boolean compruebaCasillaVacia(int f, int c) {
+    	return getEstadoCasilla(f, c) == 0;
     }
     
     public int generarRandom(int max) {
-    	int valorDado = (int)(Math.random()*max+1);
+    	Random random = new Random();
+    	int valorDado = random.nextInt(max);
     	return valorDado;
     }
 

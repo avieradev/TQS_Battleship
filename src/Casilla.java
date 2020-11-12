@@ -3,16 +3,16 @@ public class Casilla {
     public boolean revelada;
 
             public Casilla() {
-                estado = 0;
-                revelada = false;
+                this.estado = 0;
+                this.revelada = true;
             }
 
-            public void setEstado(int m_estado) {
-                estado = m_estado;
+            public void setEstado(int estado) {
+                this.estado = estado;
             }
 
             public int getEstado() {
-                return estado;
+            	return estado;
             }
 
             public boolean getRevelada() {

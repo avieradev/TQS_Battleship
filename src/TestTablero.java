@@ -37,14 +37,32 @@ public class TestTablero {
     
     @Test
     public void compruebaAislada() {
-    	tableroPrueba.setEstadoCasilla(1, 0, 1);
+    	tableroPrueba.setEstadoCasilla(0, 1, 1);
     	assertFalse(tableroPrueba.compruebaAislada(0, 0));
+    	
     	tableroPrueba.setEstadoCasilla(8, 0, 1);
     	assertFalse(tableroPrueba.compruebaAislada(9, 0));
+    	
     	tableroPrueba.setEstadoCasilla(0, 8, 1);
     	assertFalse(tableroPrueba.compruebaAislada(0, 9));
+    	
     	tableroPrueba.setEstadoCasilla(8, 9, 1);
     	assertFalse(tableroPrueba.compruebaAislada(9, 9));
+    	
+    	tableroPrueba.setEstadoCasilla(1, 1, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(0, 1));
+    	
+    	tableroPrueba.setEstadoCasilla(8, 1, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(9, 1));
+    	
+    	tableroPrueba.setEstadoCasilla(3, 0, 1);
+    	tableroPrueba.setEstadoCasilla(4, 1, 1);
+    	tableroPrueba.setEstadoCasilla(5, 0, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(4, 0));
+    	
+    	tableroPrueba.setEstadoCasilla(3, 4, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(3, 5));
+    
     }
 
 }

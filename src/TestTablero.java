@@ -20,5 +20,6 @@ public class TestTablero {
         tableroPrueba.setEstadoCasilla(1, 1, 0);
         assertEquals(tableroPrueba.getEstadoCasilla(1,1), 0);
     }
+    
 
 }

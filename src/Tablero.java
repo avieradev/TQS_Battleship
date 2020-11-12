@@ -17,5 +17,16 @@ public class Tablero {
     public void setEstadoCasilla(int col, int row, int estado) {
         tableroJuego[col][row].setEstado(estado);
     }
+    
+    public void printTablero() {
+    	for (int col = 0; col < 10; col ++) {
+    		for (int row = 0; row < 10; row ++) {
+    			if (tableroJuego[col][row].getEstado() == 0) {
+    				System.out.print("-" + "\t");
+    			}
+    		}
+    		System.out.print("\n");
+    	}
+    }
 
 }

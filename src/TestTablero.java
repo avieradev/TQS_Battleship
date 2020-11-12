@@ -30,8 +30,21 @@ public class TestTablero {
     }
     
     @Test
-    public void compruebaCasilla() {
+    public void compruebaCasillaVacia() {
     	assertEquals(tableroPrueba.getEstadoCasilla(0, 0), 0);
+    }
+    
+    
+    @Test
+    public void compruebaAislada() {
+    	tableroPrueba.setEstadoCasilla(1, 0, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(0, 0));
+    	tableroPrueba.setEstadoCasilla(8, 0, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(9, 0));
+    	tableroPrueba.setEstadoCasilla(0, 8, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(0, 9));
+    	tableroPrueba.setEstadoCasilla(8, 9, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(9, 9));
     }
 
 }

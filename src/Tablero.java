@@ -74,9 +74,9 @@ public class Tablero {
     	while (barcosColocados != totalBarcos) {
     		int columnaRand = generarRandom(10);
     		int filaRand = generarRandom(10);
-    		if(tableroJuego[columnaRand][filaRand].getEstado() == 0) {
+    		if(compruebaCasillaVacia(columnaRand, filaRand)) {
     			if(columnaRand == 0 && filaRand == 0) {
-    				if(tableroJuego[columnaRand + 1][filaRand].getEstado() == 0) {
+    				if(compruebaCasillaVacia(columnaRand + 1, filaRand)) {
     					
     				}
     			}
@@ -85,8 +85,53 @@ public class Tablero {
     	}
     }
     
-    public boolean compruebaCasilla() {
-    	return true;
+    public boolean compruebaAislada(int col, int row) {
+    	//primero compruebo las cuatro esquinas del tablero
+    	if(col == 0 && row == 0) {
+    		return compruebaCasillaVacia(col + 1, row) && compruebaCasillaVacia(col, row+1);
+    
+    	}
+    	if(col == 9 && row == 9) {
+    		return compruebaCasillaVacia(col - 1, row) && compruebaCasillaVacia(col, row-1);
+    	}
+    	if(col == 0 && row == 9) {
+    		return compruebaCasillaVacia(col + 1, row) && compruebaCasillaVacia(col, row-1);
+    	}
+    	if(col == 9 && row == 0) {
+    		return compruebaCasillaVacia(col - 1, row) && compruebaCasillaVacia(col, row+1);
+    	}
+    	//ahora compruebo los bordes izquierda y derecha
+    	if(col == 0) {
+    		return compruebaCasillaVacia(col - 1, row) 
+    				&& compruebaCasillaVacia(col + 1, row) 
+    				&& compruebaCasillaVacia(col, row + 1);
+    	}
+    	if(col == 9) {
+    		return compruebaCasillaVacia(col - 1, row) 
+    				&& compruebaCasillaVacia(col + 1, row) 
+    				&& compruebaCasillaVacia(col, row - 1);
+    	}
+    	//ahora compuerbo los bordes arriba y abajo
+    	if(row == 0) {
+    		return compruebaCasillaVacia(col + 1, row) 
+    				&& compruebaCasillaVacia(col, row + 1) 
+    				&& compruebaCasillaVacia(col, row - 1);
+    	}
+    	if(row == 9) {
+    		return compruebaCasillaVacia(col - 1, row) 
+    				&& compruebaCasillaVacia(col, row + 1) 
+    				&& compruebaCasillaVacia(col, row - 1);
+    	}
+    	//ahora compruebo cualquier casilla en medio
+    	return compruebaCasillaVacia(col - 1, row) 
+    			&& compruebaCasillaVacia(col + 1, row) 
+    			&& compruebaCasillaVacia(col, row + 1) 
+    			&& compruebaCasillaVacia(col, row - 1);
+    	
+    }
+    
+    public boolean compruebaCasillaVacia(int col, int row) {
+    	return getEstadoCasilla(col, row) == 0;
     }
     
     public int generarRandom(int max) {

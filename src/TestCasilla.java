@@ -30,7 +30,7 @@ public class TestCasilla {
     @Test
     public void testGetRevelada() {
         Casilla casellaPrueba = new Casilla();
-        assertFalse(casellaPrueba.getRevelada());
+        assertTrue(casellaPrueba.getRevelada());
     }
     @Test
     public void testSetRevelada() {

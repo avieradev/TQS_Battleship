@@ -16,26 +16,31 @@ public class TestTablero {
 
     @Test
     public void testCreacionTablero() {
-        tableroPrueba.setEstadoCasilla(1, 1, 0);
         assertEquals(tableroPrueba.getEstadoCasilla(1,1), 0);
+    }
+    
+    @Test
+    public void testSetEstadoCasilla() {
+    	tableroPrueba.setEstadoCasilla(1,1, 1);
+    	assertEquals(tableroPrueba.getEstadoCasilla(1,1), 1);
     }
     //@Test
     public void testSetBarcosAleatorios() {
     	tableroPrueba.setBarcosAleatorios();
-    	
+    	assertEquals(tableroPrueba.getBarcosVivos(), 4);
     }
     //@Test
     public void testGenerarRandom() {
     	assertEquals(tableroPrueba.generarRandom(1), 1);
     }
     
-    @Test
+    //@Test
     public void compruebaCasillaVacia() {
     	assertEquals(tableroPrueba.getEstadoCasilla(0, 0), 0);
     }
     
     
-    @Test
+    //@Test
     public void compruebaAislada() {
     	tableroPrueba.setEstadoCasilla(0, 1, 1);
     	assertFalse(tableroPrueba.compruebaAislada(0, 0));

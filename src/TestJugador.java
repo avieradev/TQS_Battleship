@@ -21,7 +21,8 @@ public class TestJugador {
 		assertEquals(jugadorPrueba.getNombre(), "Pepe");
 	}
 	
-	@Test void testInsertafila() {
+	//@Test
+	public void testInsertafila() {
 		Scanner sc = new Scanner(System.in);
 		assertEquals(jugadorPrueba.insertaFila(sc), 3);
 	}

@@ -14,4 +14,9 @@ public class Jugador {
 		System.out.print("Que fila quieres atacar?");
 		return sc.nextInt();
 	}
+	
+	public int insertaColumna(Scanner sc) {
+		System.out.print("Que columna quieres atacar?");
+		return sc.nextInt();
+	}
 }

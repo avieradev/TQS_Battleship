@@ -35,7 +35,7 @@ public class TestTablero {
     }
     
     @Test
-    public void compruebaCasillaVacia() {
+    public void testCompruebaCasillaVacia() {
     	assertEquals(tableroPrueba.getEstadoCasilla(0, 0), 0);
     }
     
@@ -51,7 +51,7 @@ public class TestTablero {
     }
     
     @Test
-    public void compruebaAislada() {
+    public void testCompruebaAislada() {
 	
     	//SOBREPASA LIMITES
     	assertFalse(tableroPrueba.compruebaAislada(-1, 0));

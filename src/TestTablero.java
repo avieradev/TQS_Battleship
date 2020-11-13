@@ -29,9 +29,9 @@ public class TestTablero {
     	tableroPrueba.setBarcosAleatorios();
     	assertEquals(tableroPrueba.getBarcosVivos(), 4);
     }
-    //@Test
+    @Test
     public void testGenerarRandom() {
-    	assertEquals(tableroPrueba.generarRandom(1), 1);
+    	assertEquals(tableroPrueba.generarRandom(1), 0);
     }
     
     @Test
@@ -39,6 +39,16 @@ public class TestTablero {
     	assertEquals(tableroPrueba.getEstadoCasilla(0, 0), 0);
     }
     
+    @Test
+    public void testCompruebaPosicionValida()
+    {
+    	//SOBREPASA LIMITES
+    	assertFalse(tableroPrueba.compruebaPosicionValida(-1, 0));
+    	assertFalse(tableroPrueba.compruebaPosicionValida(0, -1));
+    	assertFalse(tableroPrueba.compruebaPosicionValida(10, 0));
+    	assertFalse(tableroPrueba.compruebaPosicionValida(0, 10));
+    	assertTrue(tableroPrueba.compruebaPosicionValida(0, 0));
+    }
     
     @Test
     public void compruebaAislada() {

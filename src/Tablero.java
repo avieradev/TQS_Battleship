@@ -149,7 +149,10 @@ public class Tablero {
     	return totalBarcosVivos;
     }
     
-
+   public boolean compruebaPosicionValida(int f, int c){
+	   if(f < 0 || f > 9 || c < 0 || c > 9) return false;
+	   return true;
+   }
     public boolean compruebaAislada(int f, int c) {
     	if(f < 0 || f > 9 || c < 0 || c > 9) return false;
     	//primero compruebo las cuatro esquinas del tablero

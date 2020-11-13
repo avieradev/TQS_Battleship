@@ -4,14 +4,17 @@ public class Tablero {
 	final int FILAS = 10, COLUMNAS = 10;
     public Casilla [][] tableroJuego = new Casilla[FILAS][COLUMNAS];
     protected int totalBarcos;
+    protected int totalBarcosVivos;
 
     public Tablero(int totalBarcos) {
     	this.totalBarcos = totalBarcos;
+    	totalBarcosVivos = totalBarcos;
     	for (int f = 0; f < FILAS; f ++) {
     		for (int c = 0; c < COLUMNAS ; c ++) {
     			tableroJuego[f][c] = new Casilla();
     		}
     	}
+  
     }
 
     public int getEstadoCasilla(int f, int c) {
@@ -142,6 +145,11 @@ public class Tablero {
     	}
     }
     
+    public int getBarcosVivos() {
+    	return totalBarcosVivos;
+    }
+    
+
     public boolean compruebaAislada(int f, int c) {
     	if(f < 0 || f > 9 || c < 0 || c > 9) return false;
     	//primero compruebo las cuatro esquinas del tablero
@@ -157,7 +165,7 @@ public class Tablero {
     	if(f == 9 && c == 0) {
     		return compruebaCasillaVacia(f - 1, c) && compruebaCasillaVacia(f, c+1);
     	}
-    	//ahora compruebo los bordes izquierda y derecha
+    	//ahora compruebo los bordes de arriba y abajo
     	if(f == 0) {
     		return compruebaCasillaVacia(f + 1, c) 
     				&& compruebaCasillaVacia(f, c -1) 
@@ -168,7 +176,7 @@ public class Tablero {
     				&& compruebaCasillaVacia(f, c + 1) 
     				&& compruebaCasillaVacia(f, c - 1);
     	}
-    	//ahora compuerbo los bordes arriba y abajo
+    	//ahora compuerbo los bordes de izquierda derecha
     	if(c == 0) {
     		return compruebaCasillaVacia(f, c + 1) 
     				&& compruebaCasillaVacia(f + 1, c ) 

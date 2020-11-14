@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestJugador {
-	Jugador jugadorPrueba = new Jugador("Pepe");
+	InterficieJugador jugadorPrueba = new mockobjectJugador();
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -18,13 +18,19 @@ public class TestJugador {
 
 	@Test
 	public void testGetNombre() {
-		assertEquals(jugadorPrueba.getNombre(), "Pepe");
+		assertEquals(jugadorPrueba.getNombre(), "MockPlayer");
 	}
 	
-	//@Test
+	@Test
 	public void testInsertafila() {
 		Scanner sc = new Scanner(System.in);
-		assertEquals(jugadorPrueba.insertaFila(sc), 3);
+		assertEquals(jugadorPrueba.insertaFila(sc), 0);
+	}
+	
+	@Test
+	public void testInsertaColumna() {
+		Scanner sc = new Scanner(System.in);
+		assertEquals(jugadorPrueba.insertaColumna(sc), 0);
 	}
 
 }

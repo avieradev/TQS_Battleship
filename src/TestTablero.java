@@ -39,6 +39,15 @@ public class TestTablero {
     }
     
     @Test
+    public void testResetCasilla() {
+    	tableroPrueba.setEstadoCasilla(0, 0, 1);
+    	tableroPrueba.resetCasilla(0, 0);
+    	assertEquals(tableroPrueba.getEstadoCasilla(0, 0), 0);
+    }
+    
+    
+    
+    @Test
     public void testCompruebaHundida() {
     	tableroPrueba.setEstadoCasilla(3, 1, 1);
     	tableroPrueba.setEstadoCasilla(3, 2, 1);
@@ -55,7 +64,7 @@ public class TestTablero {
     	tableroPrueba.setCasillaRevelada(3, 2);
     	tableroPrueba.setCasillaRevelada(3, 1);
     	assertTrue(tableroPrueba.compruebaHundida(3, 3));
-    	
+    	tableroPrueba
     	
     }
     

@@ -27,6 +27,8 @@ public class Tablero {
         tableroJuego[f][c].setEstado(estado);
     }
     
+    
+    
     public void setCasillaRevelada(int f, int c)
     {
     	tableroJuego[f][c].setRevelada();

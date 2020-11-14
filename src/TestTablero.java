@@ -58,6 +58,7 @@ public class TestTablero {
     	assertFalse(tableroPrueba.compruebaHundida(0, 2));
     	tableroPrueba.setCasillaRevelada(0, 0);
     	assertTrue(tableroPrueba.compruebaHundida(0, 2));
+    	assertEquals(tableroPrueba.getEstadoCasilla(0, 0),2);
     	tableroPrueba.resetCasilla(0, 0);
     	tableroPrueba.resetCasilla(0, 1);
     	tableroPrueba.resetCasilla(0, 2);

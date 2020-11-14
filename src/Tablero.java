@@ -19,7 +19,7 @@ public class Tablero {
 
     public int getEstadoCasilla(int f, int c) {
         return tableroJuego[f][c].getEstado();
-
+        
     }
 
     public void setEstadoCasilla(int f, int c, int estado) {
@@ -104,7 +104,11 @@ public class Tablero {
     		else if(tableroJuego[f-1][c].getEstado() == 1){
     			if(tableroJuego[f-1][c].getVisitada() == false) {
     				tableroJuego[f-1][c].setVisitada();
-    				hundida_arriba = compruebaHundida(f-1,c);	
+    				hundida_arriba = compruebaHundida(f-1,c);
+    				if(hundida_arriba) {
+    					setEstadoCasilla(f-1,c,2);
+    		    		revelaZona(f-1,c);
+    				}
     			}
     			
     		}
@@ -120,6 +124,10 @@ public class Tablero {
     			if(tableroJuego[f+1][c].getVisitada() == false) {
     				tableroJuego[f+1][c].setVisitada();
     				hundida_abajo = compruebaHundida(f+1,c);
+    				if(hundida_abajo) {
+    					setEstadoCasilla(f+1,c,2);
+    		    		revelaZona(f+1,c);
+    				}
     			}
     		}
     	}
@@ -133,6 +141,10 @@ public class Tablero {
     			if(tableroJuego[f][c-1].getVisitada() == false) {
     				tableroJuego[f][c-1].setVisitada();
     				hundida_izquierda = compruebaHundida(f,c-1);
+    				if(hundida_izquierda) {
+    					setEstadoCasilla(f,c-1,2);
+    		    		revelaZona(f,c-1);
+    				}
     			}
     			
     		}
@@ -146,13 +158,18 @@ public class Tablero {
     		else if(tableroJuego[f][c+1].getEstado() == 1){
     			if(tableroJuego[f][c+1].getVisitada() == false) {
     				tableroJuego[f][c+1].setVisitada();
-    				hundida_izquierda = compruebaHundida(f,c+1);
+    				hundida_derecha = compruebaHundida(f,c+1);
+    				if(hundida_derecha) {
+    					setEstadoCasilla(f,c+1,2);
+    		    		revelaZona(f,c+1);
+    				}
     			}
     			
     		}
     	}
     	if (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha) {
     		setEstadoCasilla(f,c,2);
+    		revelaZona(f,c);
     	}
     	return (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha);
     }

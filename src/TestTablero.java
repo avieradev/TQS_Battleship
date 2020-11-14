@@ -124,11 +124,13 @@ public class TestTablero {
     	assertTrue(tableroPrueba.getCasillaRevelada(0,0));
     	tableroPrueba.resetCasilla(0, 0);
     }
-    //@Test
+    @Test
     public void testRevelaZona() {
     	tableroPrueba.revelaZona(0,0);
-    	tableroPrueba.getCasillaRevelada(0,0);
-    	
+    	assertTrue(tableroPrueba.getCasillaRevelada(0,0));
+    	assertTrue(tableroPrueba.getCasillaRevelada(0,1));
+    	assertTrue(tableroPrueba.getCasillaRevelada(1,0));
+    	assertTrue(tableroPrueba.getCasillaRevelada(1,1));
     }
     
     @Test

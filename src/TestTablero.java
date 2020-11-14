@@ -64,7 +64,7 @@ public class TestTablero {
     	tableroPrueba.setCasillaRevelada(3, 2);
     	tableroPrueba.setCasillaRevelada(3, 1);
     	assertTrue(tableroPrueba.compruebaHundida(3, 3));
-    	tableroPrueba
+    	//tableroPrueba
     	
     }
     

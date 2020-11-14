@@ -159,36 +159,37 @@ public class Tablero {
     
     public void revelaZona(int f, int c) {
     	
+    	setCasillaRevelada(f,c);
     	//COMPROBACION ESQUINAS
     	if(f == 0 && c == 0) {
     		setCasillaRevelada(f + 1, c);
     		setCasillaRevelada(f, c+1);
     		setCasillaRevelada(f+1, c+1);
     	}
-    	if(f == 9 && c == 9) {
+    	else if(f == 9 && c == 9) {
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f, c-1);
     		setCasillaRevelada(f-1, c-1);
     	}
-    	if(f == 0 && c == 9) {
+    	else if(f == 0 && c == 9) {
     		setCasillaRevelada(f + 1, c);
     		setCasillaRevelada(f, c-1);
     		setCasillaRevelada(f+1, c-1);
     	}
-    	if(f == 9 && c == 0) {
+    	else if(f == 9 && c == 0) {
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f, c+1);
     		setCasillaRevelada(f-1, c+1);
     	}
     	//COMPROBACION ARRIBA ABAJO
-    	if(f == 0) {
+    	else if(f == 0) {
     		setCasillaRevelada(f + 1, c); 
     		setCasillaRevelada(f, c -1);
     		setCasillaRevelada(f, c + 1);
     		setCasillaRevelada(f +1, c -1);
     		setCasillaRevelada(f+1, c + 1);
     	}
-    	if(f == 9) {
+    	else if(f == 9) {
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f, c - 1);
     		setCasillaRevelada(f, c + 1);
@@ -196,21 +197,21 @@ public class Tablero {
     		setCasillaRevelada(f-1, c + 1);
     	}
     	//COMPROBACION DERECHA IZQUIERDA
-    	if(c == 0) {
+    	else if(c == 0) {
     		setCasillaRevelada(f, c + 1); 
     		setCasillaRevelada(f + 1, c );
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f +1, c +1);
     		setCasillaRevelada(f-1, c + 1);
     	}
-    	if(c == 9) {
+    	else if(c == 9) {
     		setCasillaRevelada(f, c - 1);
     		setCasillaRevelada(f + 1, c);
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f +1, c -1); 
     		setCasillaRevelada(f-1, c - 1);
     	}
-    	//COMPROBACION CASILLA INTERIOR
+    	else{
     	setCasillaRevelada(f - 1, c);
     	setCasillaRevelada(f + 1, c);
     	setCasillaRevelada(f, c + 1);
@@ -219,6 +220,8 @@ public class Tablero {
     	setCasillaRevelada(f + 1, c - 1);
     	setCasillaRevelada(f - 1, c + 1);
     	setCasillaRevelada(f - 1, c - 1);
+    	}
+    	
     	
     }
     

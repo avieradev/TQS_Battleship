@@ -150,6 +150,8 @@ public class Tablero {
     	return (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha);
     }
     
+
+    
     public void setBarcosAleatorios() {
     	//empiezo con barcos de 3 posiciones
     	int barcosColocados = 0;

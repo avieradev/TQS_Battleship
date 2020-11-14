@@ -119,6 +119,11 @@ public class TestTablero {
     }
     
     @Test
+    public void testSetHundidas() {
+    	assertEquals(tableroPrueba.getEstadoCasilla(0,0), 2);
+    }
+    
+    @Test
     public void testCompruebaPosicionValida()
     {
     	//SOBREPASA LIMITES

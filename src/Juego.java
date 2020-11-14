@@ -14,10 +14,8 @@ public class Juego {
 		//INICIALIZACION JUEGO
 		System.out.println("¿Cuantos barcos quieres?: ");
 		int totalBarcos = sc.nextInt();
+		Jugador jugador1 = new Jugador("Adria");
 		Tablero tablero1 = new Tablero(totalBarcos);
-		System.out.println("¿Como te llamas?: ");
-		String name = sc.nextLine();
-		Jugador jugador1 = new Jugador("name");
 		tablero1.setBarcosAleatorios();
 		
 		//VARIABLES 
@@ -37,9 +35,12 @@ public class Juego {
 			//BUCLE COMPROBAR POSICION
 			boolean valid = false;
 			while(!valid) {
-			fila = jugador1.insertaFila(sc);
-			columna = jugador1.insertaColumna(sc);
-			tablero1.compruebaPosicionValida(fila, columna);
+				fila = jugador1.insertaFila(sc);
+				columna = jugador1.insertaColumna(sc);
+				valid = tablero1.compruebaPosicionValida(fila, columna);
+				if(!valid) {
+					System.out.println("CASILLA NO VALIDA");
+					}
 			}
 			
 			//DESVELAR CASILLA

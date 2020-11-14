@@ -5,7 +5,7 @@ public class Tablero {
     public Casilla [][] tableroJuego = new Casilla[FILAS][COLUMNAS];
     protected int totalBarcos;
     protected int totalBarcosVivos;
-
+    
     public Tablero(int totalBarcos) {
     	this.totalBarcos = totalBarcos;
     	totalBarcosVivos = totalBarcos;
@@ -87,8 +87,47 @@ public class Tablero {
     public boolean compruebaHundida(int f, int c) {
     	
     	//FILA SUPERIOR
-    	
-    	return false;
+    	boolean hundida_arriba = true;
+    	if(f-1 >= 0) {
+    		if(tableroJuego[f-1][c].getEstado() == 1 && tableroJuego[f-1][c].getRevelada() == false) {
+    			return false;
+    		}
+    		else if(tableroJuego[f-1][c].getEstado() == 1){
+    			hundida_arriba = compruebaHundida(f-1,c);
+    		}
+    		
+    	}
+    	//FILA INFERIOR
+    	boolean hundida_abajo = true;
+    	if(f+1 < 10) {
+    		if(tableroJuego[f+1][c].getEstado() == 1 && tableroJuego[f+1][c].getRevelada() == false) {
+    			return false;
+    		}
+    		else if(tableroJuego[f+1][c].getEstado() == 1){
+    			hundida_abajo = compruebaHundida(f+1,c);
+    		}
+    	}
+    	//LADO IZQUIERDO
+    	boolean hundida_izquierda = true;
+    	if(c-1 >= 0) {
+    		if(tableroJuego[f][c-1].getEstado() == 1 && tableroJuego[f][c-1].getRevelada() == false) {
+    			return false;
+    		}
+    		else if(tableroJuego[f][c-1].getEstado() == 1){
+    			hundida_izquierda = compruebaHundida(f,c-1);
+    		}
+    	}
+    	//LADO DERECHO
+    	boolean hundida_derecha = true;
+    	if(c+1 < 10) {
+    		if(tableroJuego[f][c+1].getEstado() == 1 && tableroJuego[f][c+1].getRevelada() == false) {
+    			return false;
+    		}
+    		else if(tableroJuego[f][c+1].getEstado() == 1){
+    			hundida_derecha = compruebaHundida(f,c+1);
+    		}
+    	}
+    	return (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha);
     }
     
     public void setBarcosAleatorios() {
@@ -109,6 +148,7 @@ public class Tablero {
     						setEstadoCasilla(fRand - 1, cRand, 1);
     						setEstadoCasilla(fRand - 2, cRand, 1);
     						barcosColocados++;
+    	
     					}
     				}
     			}

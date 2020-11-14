@@ -56,6 +56,7 @@ public class TestTablero {
     	tableroPrueba.setCasillaRevelada(3, 1);
     	assertTrue(tableroPrueba.compruebaHundida(3, 3));
     	
+    	
     }
     
     @Test

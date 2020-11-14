@@ -93,7 +93,11 @@ public class Tablero {
     			return false;
     		}
     		else if(tableroJuego[f-1][c].getEstado() == 1){
-    			hundida_arriba = compruebaHundida(f-1,c);
+    			if(tableroJuego[f-1][c].getVisitada() == false) {
+    				tableroJuego[f-1][c].setVisitada();
+    				hundida_arriba = compruebaHundida(f-1,c);	
+    			}
+    			
     		}
     		
     	}
@@ -104,7 +108,10 @@ public class Tablero {
     			return false;
     		}
     		else if(tableroJuego[f+1][c].getEstado() == 1){
-    			hundida_abajo = compruebaHundida(f+1,c);
+    			if(tableroJuego[f+1][c].getVisitada() == false) {
+    				tableroJuego[f+1][c].setVisitada();
+    				hundida_abajo = compruebaHundida(f+1,c);
+    			}
     		}
     	}
     	//LADO IZQUIERDO
@@ -114,7 +121,11 @@ public class Tablero {
     			return false;
     		}
     		else if(tableroJuego[f][c-1].getEstado() == 1){
-    			hundida_izquierda = compruebaHundida(f,c-1);
+    			if(tableroJuego[f][c-1].getVisitada() == false) {
+    				tableroJuego[f][c-1].setVisitada();
+    				hundida_izquierda = compruebaHundida(f,c-1);
+    			}
+    			
     		}
     	}
     	//LADO DERECHO
@@ -124,7 +135,11 @@ public class Tablero {
     			return false;
     		}
     		else if(tableroJuego[f][c+1].getEstado() == 1){
-    			hundida_derecha = compruebaHundida(f,c+1);
+    			if(tableroJuego[f][c+1].getVisitada() == false) {
+    				tableroJuego[f][c+1].setVisitada();
+    				hundida_izquierda = compruebaHundida(f,c+1);
+    			}
+    			
     		}
     	}
     	return (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha);

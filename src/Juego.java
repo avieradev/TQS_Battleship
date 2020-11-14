@@ -5,7 +5,7 @@ public class Juego {
 	public Juego() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public static void main(String[] args) {
 		
 		Tablero tablero1 = new Tablero(4);

@@ -32,7 +32,12 @@ public class Casilla {
             public void setVisitada() {
                 visitada = true;
             }
-     
+            
+            public void reset(){
+            	this.estado = 0;
+            	this.revelada = false;
+            	this.visitada = false;
+            }
             
             
         

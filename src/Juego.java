@@ -52,7 +52,7 @@ public class Juego {
 				
 				//SI ES HUNDIDO
 				if(hundida == true) {
-					tablero1.revelarAdyacentes(fila, columna);
+					//tablero1.revelarAdyacentes(fila, columna);
 					totalBarcos--;
 				}
 			}

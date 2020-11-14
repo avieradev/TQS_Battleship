@@ -14,7 +14,7 @@ public class Tablero {
     			tableroJuego[f][c] = new Casilla();
     		}
     	}
-  
+ 
     }
 
     public int getEstadoCasilla(int f, int c) {
@@ -84,7 +84,12 @@ public class Tablero {
     	}
     }
     
-    
+    public boolean compruebaHundida(int f, int c) {
+    	
+    	//FILA SUPERIOR
+    	
+    	return false;
+    }
     
     public void setBarcosAleatorios() {
     	//empiezo con barcos de 3 posiciones
@@ -169,48 +174,53 @@ public class Tablero {
 	   }
 
    }
-    public boolean compruebaAislada(int f, int c) {
+   
+   public boolean compruebaAislada(int f, int c) {
     	if(f < 0 || f > 9 || c < 0 || c > 9) return false;
-    	//primero compruebo las cuatro esquinas del tablero
+    	//COMPROBACION ESQUINAS
     	if(f == 0 && c == 0) {
-    		return compruebaCasillaVacia(f + 1, c) && compruebaCasillaVacia(f, c+1);
+    		return compruebaCasillaVacia(f + 1, c) && compruebaCasillaVacia(f, c+1)
+    				&& compruebaCasillaVacia(f+1, c+1);
     	}
     	if(f == 9 && c == 9) {
-    		return compruebaCasillaVacia(f - 1, c) && compruebaCasillaVacia(f, c-1);
+    		return compruebaCasillaVacia(f - 1, c) && compruebaCasillaVacia(f, c-1)
+    				&& compruebaCasillaVacia(f-1, c-1);
     	}
     	if(f == 0 && c == 9) {
-    		return compruebaCasillaVacia(f + 1, c) && compruebaCasillaVacia(f, c-1);
+    		return compruebaCasillaVacia(f + 1, c) && compruebaCasillaVacia(f, c-1)
+    				&& compruebaCasillaVacia(f+1, c-1);
     	}
     	if(f == 9 && c == 0) {
-    		return compruebaCasillaVacia(f - 1, c) && compruebaCasillaVacia(f, c+1);
+    		return compruebaCasillaVacia(f - 1, c) && compruebaCasillaVacia(f, c+1)
+    				&& compruebaCasillaVacia(f-1, c+1);
     	}
-    	//ahora compruebo los bordes de arriba y abajo
+    	//COMPROBACION ARRIBA ABAJO
     	if(f == 0) {
     		return compruebaCasillaVacia(f + 1, c) 
-    				&& compruebaCasillaVacia(f, c -1) 
-    				&& compruebaCasillaVacia(f, c + 1);
+    				&& compruebaCasillaVacia(f, c -1) && compruebaCasillaVacia(f, c + 1)
+    				&& compruebaCasillaVacia(f +1, c -1) && compruebaCasillaVacia(f+1, c + 1);
     	}
     	if(f == 9) {
     		return compruebaCasillaVacia(f - 1, c) 
-    				&& compruebaCasillaVacia(f, c + 1) 
-    				&& compruebaCasillaVacia(f, c - 1);
+    				&& compruebaCasillaVacia(f, c - 1) && compruebaCasillaVacia(f, c + 1)
+    				&& compruebaCasillaVacia(f-1, c -1) && compruebaCasillaVacia(f-1, c + 1);
     	}
-    	//ahora compuerbo los bordes de izquierda derecha
+    	//COMPROBACION DERECHA IZQUIERDA
     	if(c == 0) {
     		return compruebaCasillaVacia(f, c + 1) 
-    				&& compruebaCasillaVacia(f + 1, c ) 
-    				&& compruebaCasillaVacia(f - 1, c);
+    				&& compruebaCasillaVacia(f + 1, c ) && compruebaCasillaVacia(f - 1, c)
+    				&& compruebaCasillaVacia(f +1, c +1) && compruebaCasillaVacia(f-1, c + 1);
     	}
     	if(c == 9) {
     		return compruebaCasillaVacia(f, c - 1) 
-    				&& compruebaCasillaVacia(f + 1, c) 
-    				&& compruebaCasillaVacia(f - 1, c);
+    				&& compruebaCasillaVacia(f + 1, c) && compruebaCasillaVacia(f - 1, c)
+    				&& compruebaCasillaVacia(f +1, c -1) && compruebaCasillaVacia(f-1, c - 1);
     	}
-    	//ahora compruebo cualquier casilla en medio
-    	return compruebaCasillaVacia(f - 1, c) 
-    			&& compruebaCasillaVacia(f + 1, c) 
-    			&& compruebaCasillaVacia(f, c + 1) 
-    			&& compruebaCasillaVacia(f, c - 1);
+    	//COMPROBACION CASILLA INTERIOR
+    	return compruebaCasillaVacia(f - 1, c) && compruebaCasillaVacia(f + 1, c) 
+    			&& compruebaCasillaVacia(f, c + 1) && compruebaCasillaVacia(f, c - 1)
+    			&& compruebaCasillaVacia(f + 1, c + 1) && compruebaCasillaVacia(f + 1, c - 1)
+    			&& compruebaCasillaVacia(f - 1, c + 1) && compruebaCasillaVacia(f - 1, c - 1);
     	
     }
     

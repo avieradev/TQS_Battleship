@@ -4,7 +4,7 @@ public class Casilla {
 
             public Casilla() {
                 this.estado = 0;
-                this.revelada = true;
+                this.revelada = false;
             }
 
             public void setEstado(int estado) {

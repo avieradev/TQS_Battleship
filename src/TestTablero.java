@@ -51,7 +51,13 @@ public class TestTablero {
     	assertFalse(tableroPrueba.compruebaPosicionValida(0, -1));
     	assertFalse(tableroPrueba.compruebaPosicionValida(10, 0));
     	assertFalse(tableroPrueba.compruebaPosicionValida(0, 10));
-    	assertTrue(tableroPrueba.compruebaPosicionValida(0, 0));
+    	
+    	//YA ESTA REVELADA
+    	tableroPrueba.setCasillaRevelada(0, 0);
+    	assertFalse(tableroPrueba.compruebaPosicionValida(0, 0));
+    	
+    	//CORRECTA
+    	assertTrue(tableroPrueba.compruebaPosicionValida(5, 5));
     }
     
     @Test
@@ -71,6 +77,9 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(1, 0, 1);
     	assertFalse(tableroPrueba.compruebaAislada(0, 0));
     	tableroPrueba.setEstadoCasilla(1, 0, 0);
+    	tableroPrueba.setEstadoCasilla(1, 1, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(0, 0));
+    	tableroPrueba.setEstadoCasilla(1, 1, 0);
     	
     	assertTrue(tableroPrueba.compruebaAislada(9, 9));
     	tableroPrueba.setEstadoCasilla(9, 8, 1);
@@ -79,6 +88,9 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(8, 9, 1);
     	assertFalse(tableroPrueba.compruebaAislada(9, 9));
     	tableroPrueba.setEstadoCasilla(8, 9, 0);
+    	tableroPrueba.setEstadoCasilla(8, 8, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(9, 9));
+    	tableroPrueba.setEstadoCasilla(8, 8, 0);
     	
     	assertTrue(tableroPrueba.compruebaAislada(0, 9));
     	tableroPrueba.setEstadoCasilla(0, 8, 1);
@@ -87,6 +99,9 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(1, 9, 1);
     	assertFalse(tableroPrueba.compruebaAislada(0, 9));
     	tableroPrueba.setEstadoCasilla(1, 9, 0);
+    	tableroPrueba.setEstadoCasilla(1, 8, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(0, 9));
+    	tableroPrueba.setEstadoCasilla(1, 8, 0);
     	
     	assertTrue(tableroPrueba.compruebaAislada(9, 0));
     	tableroPrueba.setEstadoCasilla(9, 1, 1);
@@ -95,6 +110,9 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(8, 0, 1);
     	assertFalse(tableroPrueba.compruebaAislada(9, 0));
     	tableroPrueba.setEstadoCasilla(8, 0, 0);
+    	tableroPrueba.setEstadoCasilla(8, 1, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(9, 0));
+    	tableroPrueba.setEstadoCasilla(8, 1, 0);
     	
     	//COMPROBACION FILA INFERIOR
     	assertTrue(tableroPrueba.compruebaAislada(9, 1));
@@ -107,6 +125,12 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(8, 1, 1);
     	assertFalse(tableroPrueba.compruebaAislada(9, 1));
     	tableroPrueba.setEstadoCasilla(8, 1, 0);
+    	tableroPrueba.setEstadoCasilla(8, 0, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(9, 1));
+    	tableroPrueba.setEstadoCasilla(8, 0, 0);
+    	tableroPrueba.setEstadoCasilla(8, 2, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(9, 1));
+    	tableroPrueba.setEstadoCasilla(8, 2, 0);
     	
     	//COMPROBACION FILA SUPERIOR
     	assertTrue(tableroPrueba.compruebaAislada(0, 1));
@@ -119,6 +143,12 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(1, 1, 1);
     	assertFalse(tableroPrueba.compruebaAislada(0, 1));
     	tableroPrueba.setEstadoCasilla(1, 1, 0);
+    	tableroPrueba.setEstadoCasilla(1, 0, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(0, 1));
+    	tableroPrueba.setEstadoCasilla(1, 0, 0);
+    	tableroPrueba.setEstadoCasilla(1, 2, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(0, 1));
+    	tableroPrueba.setEstadoCasilla(1, 2, 0);
     	
     	//COMPROBACION COLUMNA IZQUIERDA
     	assertTrue(tableroPrueba.compruebaAislada(1, 0));
@@ -131,6 +161,12 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(1, 1, 1);
     	assertFalse(tableroPrueba.compruebaAislada(1, 0));
     	tableroPrueba.setEstadoCasilla(1, 1, 0);
+    	tableroPrueba.setEstadoCasilla(0, 1, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(1, 0));
+    	tableroPrueba.setEstadoCasilla(0, 1, 0);
+    	tableroPrueba.setEstadoCasilla(2, 1, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(1, 0));
+    	tableroPrueba.setEstadoCasilla(2, 1, 0);
     	
     	//COMPROBACION COLUMNA DERECHA
     	assertTrue(tableroPrueba.compruebaAislada(1, 9));
@@ -143,21 +179,39 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(1, 8, 1);
     	assertFalse(tableroPrueba.compruebaAislada(1, 9));
     	tableroPrueba.setEstadoCasilla(1, 8, 0);
+    	tableroPrueba.setEstadoCasilla(0, 8, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(1, 9));
+    	tableroPrueba.setEstadoCasilla(0, 8, 0);
+    	tableroPrueba.setEstadoCasilla(2, 8, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(1, 9));
+    	tableroPrueba.setEstadoCasilla(2, 8, 0);
     	
     	//COMPROBACION CASILLA CENTRAL
     	assertTrue(tableroPrueba.compruebaAislada(5, 5));
+    	tableroPrueba.setEstadoCasilla(4, 4, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(5, 5));
+    	tableroPrueba.setEstadoCasilla(4, 4, 0);
+    	tableroPrueba.setEstadoCasilla(4, 5, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(5, 5));
+    	tableroPrueba.setEstadoCasilla(4, 5, 0);
+    	tableroPrueba.setEstadoCasilla(4, 6, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(5, 5));
+    	tableroPrueba.setEstadoCasilla(4, 6, 0);
     	tableroPrueba.setEstadoCasilla(5, 4, 1);
     	assertFalse(tableroPrueba.compruebaAislada(5, 5));
     	tableroPrueba.setEstadoCasilla(5, 4, 0);
     	tableroPrueba.setEstadoCasilla(5, 6, 1);
     	assertFalse(tableroPrueba.compruebaAislada(5, 5));
-    	tableroPrueba.setEstadoCasilla(5, 6, 0);
-    	tableroPrueba.setEstadoCasilla(4, 5, 1);
+    	tableroPrueba.setEstadoCasilla(5, 6, 0);	
+    	tableroPrueba.setEstadoCasilla(6, 4, 1);
     	assertFalse(tableroPrueba.compruebaAislada(5, 5));
-    	tableroPrueba.setEstadoCasilla(4, 5, 0);
+    	tableroPrueba.setEstadoCasilla(6, 4, 0);
     	tableroPrueba.setEstadoCasilla(6, 5, 1);
     	assertFalse(tableroPrueba.compruebaAislada(5, 5));
-    	tableroPrueba.setEstadoCasilla(6, 5, 0);		
+    	tableroPrueba.setEstadoCasilla(6, 5, 0);
+    	tableroPrueba.setEstadoCasilla(6, 6, 1);
+    	assertFalse(tableroPrueba.compruebaAislada(5, 5));
+    	tableroPrueba.setEstadoCasilla(6, 6, 0);
     }
     
     //@Test

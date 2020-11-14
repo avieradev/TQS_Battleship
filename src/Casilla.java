@@ -32,5 +32,9 @@ public class Casilla {
             public void setVisitada() {
                 visitada = true;
             }
+     
+            
+            
+        
 
 }

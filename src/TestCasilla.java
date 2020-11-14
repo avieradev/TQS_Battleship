@@ -46,5 +46,13 @@ public class TestCasilla {
         casellaPrueba.setVisitada();
         assertTrue(casellaPrueba.getVisitada());
     }
+    
+    @Test
+    public void testResetCasilla() {
+    	Casilla casellaPrueba = new Casilla();
+    	casellaPrueba.setVisitada();
+    	casellaPrueba.reset();
+    	assertFalse(casellaPrueba.getVisitada());
+    }
 
 }

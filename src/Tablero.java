@@ -23,7 +23,7 @@ public class Tablero {
     }
 
     public void setEstadoCasilla(int f, int c, int estado) {
-    	
+    	tableroJuego[f][c].setRevelada();
         tableroJuego[f][c].setEstado(estado);
     }
     

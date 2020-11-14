@@ -119,8 +119,16 @@ public class TestTablero {
     }
     
     @Test
-    public void testSetHundidas() {
-    	assertEquals(tableroPrueba.getEstadoCasilla(0,0), 2);
+    public void testGetCasillaRevelada() {
+    	tableroPrueba.setCasillaRevelada(0, 0);
+    	assertTrue(tableroPrueba.getCasillaRevelada(0,0));
+    	tableroPrueba.resetCasilla(0, 0);
+    }
+    //@Test
+    public void testRevelaZona() {
+    	tableroPrueba.revelaZona(0,0);
+    	tableroPrueba.getCasillaRevelada(0,0);
+    	
     }
     
     @Test

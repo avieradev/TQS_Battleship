@@ -37,6 +37,10 @@ public class Tablero {
     	tableroJuego[f][c].setRevelada();
     }
     
+    public boolean getCasillaRevelada(int f, int c) {
+    	return tableroJuego[f][c].getRevelada();
+    }
+    
     public void printTablero() {
     	System.out.print("\t");
     	for (int head = 0; head < 10; head ++) {
@@ -147,10 +151,76 @@ public class Tablero {
     			
     		}
     	}
+    	if (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha) {
+    		setEstadoCasilla(f,c,2);
+    	}
     	return (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha);
     }
     
-
+    public void revelaZona(int f, int c) {
+    	
+    	//COMPROBACION ESQUINAS
+    	if(f == 0 && c == 0) {
+    		setCasillaRevelada(f + 1, c);
+    		setCasillaRevelada(f, c+1);
+    		setCasillaRevelada(f+1, c+1);
+    	}
+    	if(f == 9 && c == 9) {
+    		setCasillaRevelada(f - 1, c);
+    		setCasillaRevelada(f, c-1);
+    		setCasillaRevelada(f-1, c-1);
+    	}
+    	if(f == 0 && c == 9) {
+    		setCasillaRevelada(f + 1, c);
+    		setCasillaRevelada(f, c-1);
+    		setCasillaRevelada(f+1, c-1);
+    	}
+    	if(f == 9 && c == 0) {
+    		setCasillaRevelada(f - 1, c);
+    		setCasillaRevelada(f, c+1);
+    		setCasillaRevelada(f-1, c+1);
+    	}
+    	//COMPROBACION ARRIBA ABAJO
+    	if(f == 0) {
+    		setCasillaRevelada(f + 1, c); 
+    		setCasillaRevelada(f, c -1);
+    		setCasillaRevelada(f, c + 1);
+    		setCasillaRevelada(f +1, c -1);
+    		setCasillaRevelada(f+1, c + 1);
+    	}
+    	if(f == 9) {
+    		setCasillaRevelada(f - 1, c);
+    		setCasillaRevelada(f, c - 1);
+    		setCasillaRevelada(f, c + 1);
+    		setCasillaRevelada(f-1, c -1);
+    		setCasillaRevelada(f-1, c + 1);
+    	}
+    	//COMPROBACION DERECHA IZQUIERDA
+    	if(c == 0) {
+    		setCasillaRevelada(f, c + 1); 
+    		setCasillaRevelada(f + 1, c );
+    		setCasillaRevelada(f - 1, c);
+    		setCasillaRevelada(f +1, c +1);
+    		setCasillaRevelada(f-1, c + 1);
+    	}
+    	if(c == 9) {
+    		setCasillaRevelada(f, c - 1);
+    		setCasillaRevelada(f + 1, c);
+    		setCasillaRevelada(f - 1, c);
+    		setCasillaRevelada(f +1, c -1); 
+    		setCasillaRevelada(f-1, c - 1);
+    	}
+    	//COMPROBACION CASILLA INTERIOR
+    	setCasillaRevelada(f - 1, c);
+    	setCasillaRevelada(f + 1, c);
+    	setCasillaRevelada(f, c + 1);
+    	setCasillaRevelada(f, c - 1);
+    	setCasillaRevelada(f + 1, c + 1);
+    	setCasillaRevelada(f + 1, c - 1);
+    	setCasillaRevelada(f - 1, c + 1);
+    	setCasillaRevelada(f - 1, c - 1);
+    	
+    }
     
     public void setBarcosAleatorios() {
     	//empiezo con barcos de 3 posiciones

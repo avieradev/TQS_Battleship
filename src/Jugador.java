@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Jugador {
+public class Jugador implements InterficieJugador {
 	public String nombre;
 	public Jugador(String nombre) {
 		this.nombre = nombre;

@@ -49,22 +49,72 @@ public class TestTablero {
     
     @Test
     public void testCompruebaHundida() {
-    	tableroPrueba.setEstadoCasilla(3, 1, 1);
-    	tableroPrueba.setEstadoCasilla(3, 2, 1);
-    	tableroPrueba.setEstadoCasilla(3, 3, 1);
-    	assertFalse(tableroPrueba.compruebaHundida(3, 3));
-    	tableroPrueba.setEstadoCasilla(3, 1, 1);
-    	tableroPrueba.setEstadoCasilla(3, 2, 1);
-    	tableroPrueba.setEstadoCasilla(3, 3, 1);
-    	tableroPrueba.setCasillaRevelada(3, 2);
-    	assertFalse(tableroPrueba.compruebaHundida(3, 3));
-    	tableroPrueba.setEstadoCasilla(3, 1, 1);
-    	tableroPrueba.setEstadoCasilla(3, 2, 1);
-    	tableroPrueba.setEstadoCasilla(3, 3, 1);
-    	tableroPrueba.setCasillaRevelada(3, 2);
-    	tableroPrueba.setCasillaRevelada(3, 1);
-    	assertTrue(tableroPrueba.compruebaHundida(3, 3));
-    	//tableroPrueba
+    	//BARCO HORIZONTAL IZQUIERDA
+    	tableroPrueba.setEstadoCasilla(0, 0, 1);
+    	tableroPrueba.setEstadoCasilla(0, 1, 1);
+    	tableroPrueba.setEstadoCasilla(0, 2, 1);
+    	assertFalse(tableroPrueba.compruebaHundida(0, 2));
+    	tableroPrueba.setCasillaRevelada(0, 1);
+    	assertFalse(tableroPrueba.compruebaHundida(0, 2));
+    	tableroPrueba.setCasillaRevelada(0, 0);
+    	assertTrue(tableroPrueba.compruebaHundida(0, 2));
+    	tableroPrueba.resetCasilla(0, 0);
+    	tableroPrueba.resetCasilla(0, 1);
+    	tableroPrueba.resetCasilla(0, 2);
+    	
+    	//BARCO HORIZONTAL DERECHA
+    	tableroPrueba.setEstadoCasilla(9, 7, 1);
+    	tableroPrueba.setEstadoCasilla(9, 8, 1);
+    	tableroPrueba.setEstadoCasilla(9, 9, 1);
+    	assertFalse(tableroPrueba.compruebaHundida(9, 7));
+    	tableroPrueba.setCasillaRevelada(9, 8);
+    	assertFalse(tableroPrueba.compruebaHundida(9, 7));
+    	tableroPrueba.setCasillaRevelada(9, 9);
+    	assertTrue(tableroPrueba.compruebaHundida(9, 7));
+    	tableroPrueba.resetCasilla(9, 7);
+    	tableroPrueba.resetCasilla(9, 8);
+    	tableroPrueba.resetCasilla(9, 9);
+    	
+    	//BARCO VERTICAL ARRIBA
+    	tableroPrueba.setEstadoCasilla(7, 9, 1);
+    	tableroPrueba.setEstadoCasilla(8, 9, 1);
+    	tableroPrueba.setEstadoCasilla(9, 9, 1);
+    	assertFalse(tableroPrueba.compruebaHundida(9, 9));
+    	tableroPrueba.setCasillaRevelada(8, 9);
+    	assertFalse(tableroPrueba.compruebaHundida(9, 9));
+    	tableroPrueba.setCasillaRevelada(7, 9);
+    	assertTrue(tableroPrueba.compruebaHundida(9, 9));
+    	tableroPrueba.resetCasilla(7, 9);
+    	tableroPrueba.resetCasilla(8, 9);
+    	tableroPrueba.resetCasilla(9, 9);
+    	
+    	//BARCO VERTICAL ARRIBA
+    	tableroPrueba.setEstadoCasilla(7, 9, 1);
+    	tableroPrueba.setEstadoCasilla(8, 9, 1);
+    	tableroPrueba.setEstadoCasilla(9, 9, 1);
+    	assertFalse(tableroPrueba.compruebaHundida(7, 9));
+    	tableroPrueba.setCasillaRevelada(8, 9);
+    	assertFalse(tableroPrueba.compruebaHundida(7, 9));
+    	tableroPrueba.setCasillaRevelada(9, 9);
+    	assertTrue(tableroPrueba.compruebaHundida(7, 9));
+    	tableroPrueba.resetCasilla(7, 9);
+    	tableroPrueba.resetCasilla(8, 9);
+    	tableroPrueba.resetCasilla(9, 9);
+    	
+    	//BARCO HORIZONTAL IZQUIERDA
+    	tableroPrueba.setEstadoCasilla(0, 0, 1);
+    	tableroPrueba.setEstadoCasilla(0, 1, 1);
+    	tableroPrueba.setEstadoCasilla(0, 2, 1);
+    	assertFalse(tableroPrueba.compruebaHundida(0, 0));
+    	tableroPrueba.setCasillaRevelada(0, 1);
+    	assertFalse(tableroPrueba.compruebaHundida(0, 0));
+    	tableroPrueba.setCasillaRevelada(0, 2);
+    	assertTrue(tableroPrueba.compruebaHundida(0, 0));
+    	tableroPrueba.resetCasilla(0, 0);
+    	tableroPrueba.resetCasilla(0, 1);
+    	tableroPrueba.resetCasilla(0, 2);
+    	
+ 
     	
     }
     

@@ -39,6 +39,11 @@ public class TestTablero {
     }
     
     @Test
+    public void testCompruebaHundida() {
+    	assertFalse(tableroPrueba.compruebaHundida(0, 0));
+    }
+    
+    @Test
     public void testCompruebaPosicionValida()
     {
     	//SOBREPASA LIMITES

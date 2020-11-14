@@ -23,8 +23,13 @@ public class Tablero {
     }
 
     public void setEstadoCasilla(int f, int c, int estado) {
-    	tableroJuego[f][c].setRevelada();
+
         tableroJuego[f][c].setEstado(estado);
+    }
+    
+    public void setCasillaRevelada(int f, int c)
+    {
+    	tableroJuego[f][c].setRevelada();
     }
     
     public void printTablero() {
@@ -78,6 +83,8 @@ public class Tablero {
     		System.out.print("\n");
     	}
     }
+    
+    
     
     public void setBarcosAleatorios() {
     	//empiezo con barcos de 3 posiciones
@@ -150,8 +157,17 @@ public class Tablero {
     }
     
    public boolean compruebaPosicionValida(int f, int c){
-	   if(f < 0 || f > 9 || c < 0 || c > 9) return false;
-	   return true;
+	   if(f < 0 || f > 9 || c < 0 || c > 9) {
+		   return false;
+	   }
+	   else if(tableroJuego[f][c].getRevelada() == true)
+	   {
+		   return false;
+	   }
+	   else {
+		   return true;   
+	   }
+
    }
     public boolean compruebaAislada(int f, int c) {
     	if(f < 0 || f > 9 || c < 0 || c > 9) return false;

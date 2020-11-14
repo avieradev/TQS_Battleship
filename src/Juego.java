@@ -4,7 +4,7 @@ public class Juego {
 	
 	
 	public Juego() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stu
 	}
 	
 	public static void main(String[] args) {

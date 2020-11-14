@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class TestJugador {
 	InterficieJugador jugadorPrueba = new mockobjectJugador();
+	InterficieJugador jugadorPrueba2 = new Jugador("Real");
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -19,6 +20,7 @@ public class TestJugador {
 	@Test
 	public void testGetNombre() {
 		assertEquals(jugadorPrueba.getNombre(), "MockPlayer");
+		assertEquals(jugadorPrueba2.getNombre(), "Real");
 	}
 	
 	@Test

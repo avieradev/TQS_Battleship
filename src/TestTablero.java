@@ -24,10 +24,7 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(1,1, 1);
     	assertEquals(tableroPrueba.getEstadoCasilla(1,1), 1);
     }
-    //@Test
-    public void testGetBarcosVivos() {
-    	assertEquals(tableroPrueba.getBarcosVivos(), 4);
-    }
+
     @Test
     public void testGenerarRandom() {
     	assertEquals(tableroPrueba.generarRandom(1), 0);
@@ -38,7 +35,7 @@ public class TestTablero {
     	assertEquals(tableroPrueba.getEstadoCasilla(0, 0), 0);
     }
     
-   // @Test
+    @Test
     public void testResetCasilla() {
     	tableroPrueba.setEstadoCasilla(0, 0, 1);
     	tableroPrueba.resetCasilla(0, 0);

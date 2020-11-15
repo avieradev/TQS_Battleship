@@ -14,32 +14,32 @@ public class TestCasilla {
     public void tearDown() throws Exception {
     }
 
-    @Test
+    @Test //DE CAJA NEGRA, MIRA OUTPUT
     public void testCreacion() {
         Casilla casellaPrueba = new Casilla();
         assertEquals(casellaPrueba.getEstado(),0);
     }
 
-    @Test
+    @Test //DE CAJA NEGRA, MIRA OUTPUT
     public void testSetEstado() {
         Casilla casellaPrueba = new Casilla();
         casellaPrueba.setEstado(1);
         assertEquals(casellaPrueba.getEstado(),1);
     }
 
-    @Test
+    @Test //DE CAJA NEGRA, MIRA OUTPUT
     public void testGetRevelada() {
         Casilla casellaPrueba = new Casilla();
         assertFalse(casellaPrueba.getRevelada());
     }
-    @Test
+    @Test //DE CAJA NEGRA, MIRA OUTPUT
     public void testSetRevelada() {
         Casilla casellaPrueba = new Casilla();
         casellaPrueba.setRevelada();
         assertTrue(casellaPrueba.getRevelada());
     }
     
-    @Test
+    @Test //DE CAJA NEGRA, MIRA OUTPUT
     public void testSetVisitada() {
         Casilla casellaPrueba = new Casilla();
         assertFalse(casellaPrueba.getVisitada());
@@ -47,7 +47,7 @@ public class TestCasilla {
         assertTrue(casellaPrueba.getVisitada());
     }
     
-    @Test
+    @Test //DE CAJA NEGRA, MIRA OUTPUT
     public void testResetCasilla() {
     	Casilla casellaPrueba = new Casilla();
     	casellaPrueba.setVisitada();

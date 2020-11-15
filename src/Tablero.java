@@ -9,11 +9,10 @@ public class Tablero {
 	Stack<Integer> columna = new Stack<Integer>();
     public Casilla [][] tableroJuego = new Casilla[FILAS][COLUMNAS];
     protected int totalBarcos = 5;
-    protected int totalBarcosVivos;
     
     public Tablero() {
 
-    	totalBarcosVivos = totalBarcos;
+    	
     	for (int f = 0; f < FILAS; f ++) {
     		for (int c = 0; c < COLUMNAS ; c ++) {
     			tableroJuego[f][c] = new Casilla();
@@ -364,9 +363,6 @@ public class Tablero {
     	}
     }
     
-    public int getBarcosVivos() {
-    	return totalBarcosVivos;
-    }
     
     public boolean setBarcos(int f, int c, int o, int b) {
     	if (o == 0) {

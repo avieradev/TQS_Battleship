@@ -366,8 +366,8 @@ public class TestTablero {
     	
     }
     
-    @Test
-    public void testCompruebaAislada() {
+    @Test //TEST CAJA NEGRA COMPRUEBA OUTPUT CORRECTO
+    public void testCompruebaAisladaNegra() {
 	
     	//SOBREPASA LIMITES
     	assertFalse(tableroPrueba.compruebaAislada(-1, 0));
@@ -492,6 +492,11 @@ public class TestTablero {
     	assertFalse(tableroPrueba.compruebaAislada(1, 9));
     	tableroPrueba.setEstadoCasilla(2, 8, 0);
     	
+    	
+    }
+    
+    @Test //TEST CAJA BLANCA PARA CUBRIR
+    public void testCompruebaAislada() {
     	//COMPROBACION CASILLA CENTRAL
     	assertTrue(tableroPrueba.compruebaAislada(5, 5));
     	tableroPrueba.setEstadoCasilla(4, 4, 1);
@@ -519,7 +524,6 @@ public class TestTablero {
     	assertFalse(tableroPrueba.compruebaAislada(5, 5));
     	tableroPrueba.setEstadoCasilla(6, 6, 0);
     }
-    
   
     @Test
     public void testSetBarcos() {

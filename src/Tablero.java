@@ -1,13 +1,15 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Tablero {
 	final int FILAS = 10, COLUMNAS = 10;
+	final int PORTAAVIONES = 5, BUQUE = 4, SUBMARINO = 3, CRUCERO = 2, LANCHA = 1;
     public Casilla [][] tableroJuego = new Casilla[FILAS][COLUMNAS];
-    protected int totalBarcos;
+    protected int totalBarcos = 5;
     protected int totalBarcosVivos;
     
-    public Tablero(int totalBarcos) {
-    	this.totalBarcos = totalBarcos;
+    public Tablero() {
+
     	totalBarcosVivos = totalBarcos;
     	for (int f = 0; f < FILAS; f ++) {
     		for (int c = 0; c < COLUMNAS ; c ++) {
@@ -42,40 +44,10 @@ public class Tablero {
     }
     
     public void printTablero() {
+    	System.out.print("0: Agua, 1: Tocado, 2: Hundido" + "\n");
     	System.out.print("\t");
     	for (int head = 0; head < 10; head ++) {
-    		switch (head) {
-			case 0:
-				System.out.print("A" + "\t");
-				break;
-			case 1:
-				System.out.print("B" + "\t");
-				break;
-			case 2:
-				System.out.print("C" + "\t");
-				break;
-			case 3:
-				System.out.print("D" + "\t");
-				break;
-			case 4:
-				System.out.print("E" + "\t");
-				break;
-			case 5:
-				System.out.print("F" + "\t");
-				break;
-			case 6:
-				System.out.print("G" + "\t");
-				break;
-			case 7:
-				System.out.print("H" + "\t");
-				break;
-			case 8:
-				System.out.print("I" + "\t");
-				break;
-			case 9:
-				System.out.print("J" + "\t");
-				break;
-			}
+				System.out.print(head + "\t");
     	}
     	System.out.print("\n\n");
     	for (int f = 0;f < FILAS; f ++) {
@@ -102,15 +74,17 @@ public class Tablero {
     			return false;
     		}
     		else if(tableroJuego[f-1][c].getEstado() == 1){
-    			if(tableroJuego[f-1][c].getVisitada() == false) {
-    				tableroJuego[f-1][c].setVisitada();
-    				hundida_arriba = compruebaHundida(f-1,c);
-    				if(hundida_arriba) {
+    			if(tableroJuego[f-1][c].getRevelada()) {
+    				
+    				if(tableroJuego[f-1][c].getVisitada() == false) {
+    					tableroJuego[f-1][c].setVisitada();
     					setEstadoCasilla(f-1,c,2);
-    		    		revelaZona(f-1,c);
+    					revelaZona(f-1,c);
+    					hundida_arriba = compruebaHundida(f-1,c);
+    					
     				}
     			}
-    			
+   			
     		}
     		
     	}
@@ -121,12 +95,14 @@ public class Tablero {
     			return false;
     		}
     		else if(tableroJuego[f+1][c].getEstado() == 1){
-    			if(tableroJuego[f+1][c].getVisitada() == false) {
-    				tableroJuego[f+1][c].setVisitada();
-    				hundida_abajo = compruebaHundida(f+1,c);
-    				if(hundida_abajo) {
+    			if(tableroJuego[f+1][c].getRevelada()) {
+    				
+    				if(tableroJuego[f+1][c].getVisitada() == false) {
+    					tableroJuego[f+1][c].setVisitada();
     					setEstadoCasilla(f+1,c,2);
-    		    		revelaZona(f+1,c);
+    					revelaZona(f+1,c);
+    					hundida_abajo = compruebaHundida(f+1,c);
+    					
     				}
     			}
     		}
@@ -138,12 +114,14 @@ public class Tablero {
     			return false;
     		}
     		else if(tableroJuego[f][c-1].getEstado() == 1){
-    			if(tableroJuego[f][c-1].getVisitada() == false) {
-    				tableroJuego[f][c-1].setVisitada();
-    				hundida_izquierda = compruebaHundida(f,c-1);
-    				if(hundida_izquierda) {
+    			if(tableroJuego[f][c-1].getRevelada()) {
+    				
+    				if(tableroJuego[f][c-1].getVisitada() == false) {
+    					tableroJuego[f][c-1].setVisitada();
     					setEstadoCasilla(f,c-1,2);
-    		    		revelaZona(f,c-1);
+    					revelaZona(f,c-1);
+    					hundida_izquierda = compruebaHundida(f,c-1);
+    					
     				}
     			}
     			
@@ -156,15 +134,16 @@ public class Tablero {
     			return false;
     		}
     		else if(tableroJuego[f][c+1].getEstado() == 1){
-    			if(tableroJuego[f][c+1].getVisitada() == false) {
-    				tableroJuego[f][c+1].setVisitada();
-    				hundida_derecha = compruebaHundida(f,c+1);
-    				if(hundida_derecha) {
+    			if(tableroJuego[f][c+1].getRevelada()) {
+    				
+    				if(tableroJuego[f][c+1].getVisitada() == false) {
+    					tableroJuego[f][c+1].setVisitada();
     					setEstadoCasilla(f,c+1,2);
-    		    		revelaZona(f,c+1);
+    					revelaZona(f,c+1);
+    					hundida_derecha = compruebaHundida(f,c+1);
     				}
     			}
-    			
+   			
     		}
     	}
     	if (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha) {
@@ -311,6 +290,20 @@ public class Tablero {
     
     public int getBarcosVivos() {
     	return totalBarcosVivos;
+    }
+    
+    
+    public void setBarcos(Scanner sc) {
+    	int barcosSets = 0;
+    	while (barcosSets != 10) {
+    		System.out.print("Donde quieres empezar a colocar el portaaviones?" + "\n");
+    		System.out.print("Introduce la fila:" + "\n");
+    		sc.nextInt();
+    		System.out.print("Introduce la columna:" + "\n");
+    		sc.nextInt();
+    		System.out.print("Introduce la orientación: (0: vertical, 1: horizontal)" + "\n");
+    		sc.nextInt();
+    	}
     }
     
    public boolean compruebaPosicionValida(int f, int c){

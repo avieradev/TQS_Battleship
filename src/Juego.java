@@ -8,16 +8,28 @@ public class Juego {
 	}
 	
 	public static void main(String[] args) {
-		
+		int totalBarcos = 10;
+		boolean eleccionValida = false;
 		Scanner sc = new Scanner(System.in);
 		
 		//INICIALIZACION JUEGO
-		System.out.println("¿Cuantos barcos quieres?: ");
-		int totalBarcos = sc.nextInt();
+		System.out.println("¿Quieres inicializar los barcos aleatorios o quieres introducirlos uno a uno? (0: Aleatorios, 1: Introducir) ");
+		int eleccion = sc.nextInt();
 		Jugador jugador1 = new Jugador("Adria");
-		Tablero tablero1 = new Tablero(totalBarcos);
-		tablero1.setBarcosAleatorios();
-		
+		do {
+			if (eleccion == 0 || eleccion == 1) {
+				eleccionValida = true;
+			}else {
+				System.out.println("Elección no valida");
+				eleccion = sc.nextInt();				
+			}
+		}while(!eleccionValida);
+		Tablero tablero1 = new Tablero();
+		if(eleccion == 0) {
+			tablero1.setBarcosAleatorios();
+		}else{
+			tablero1.setBarcos(sc);
+		} 
 		//VARIABLES 
 		int fila = 0;
 		int columna = 0;

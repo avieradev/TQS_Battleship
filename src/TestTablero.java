@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestTablero {
-	Tablero tableroPrueba = new Tablero(4);
+	Tablero tableroPrueba = new Tablero();
     @Before
     public void setUp() throws Exception {
     }

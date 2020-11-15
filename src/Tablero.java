@@ -1,9 +1,12 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Tablero {
 	final int FILAS = 10, COLUMNAS = 10;
 	final int PORTAAVIONES = 5, BUQUE = 4, SUBMARINO = 3, CRUCERO = 2, LANCHA = 1;
+	Stack<Integer> fila = new Stack<Integer>();
+	Stack<Integer> columna = new Stack<Integer>();
     public Casilla [][] tableroJuego = new Casilla[FILAS][COLUMNAS];
     protected int totalBarcos = 5;
     protected int totalBarcosVivos;
@@ -66,27 +69,21 @@ public class Tablero {
     }
     
     public boolean compruebaHundida(int f, int c) {
-    	
+
     	//FILA SUPERIOR
     	boolean hundida_arriba = true;
     	if(f-1 >= 0) {
     		if(tableroJuego[f-1][c].getEstado() == 1 && tableroJuego[f-1][c].getRevelada() == false) {
     			return false;
     		}
-    		else if(tableroJuego[f-1][c].getEstado() == 1){
-    			if(tableroJuego[f-1][c].getRevelada()) {
-    				
-    				if(tableroJuego[f-1][c].getVisitada() == false) {
-    					tableroJuego[f-1][c].setVisitada();
-    					setEstadoCasilla(f-1,c,2);
-    					revelaZona(f-1,c);
-    					hundida_arriba = compruebaHundida(f-1,c);
-    					
+    		else if(tableroJuego[f-1][c].getEstado() == 1 && tableroJuego[f-1][c].getRevelada()){
+    			if(tableroJuego[f-1][c].getVisitada() == false) {
+    				tableroJuego[f-1][c].setVisitada();
+    				fila.push(f - 1);
+    				columna.push(c);
+    				hundida_arriba = compruebaHundida(f-1,c);
     				}
     			}
-   			
-    		}
-    		
     	}
     	//FILA INFERIOR
     	boolean hundida_abajo = true;
@@ -94,18 +91,15 @@ public class Tablero {
     		if(tableroJuego[f+1][c].getEstado() == 1 && tableroJuego[f+1][c].getRevelada() == false) {
     			return false;
     		}
-    		else if(tableroJuego[f+1][c].getEstado() == 1){
-    			if(tableroJuego[f+1][c].getRevelada()) {
-    				
-    				if(tableroJuego[f+1][c].getVisitada() == false) {
-    					tableroJuego[f+1][c].setVisitada();
-    					setEstadoCasilla(f+1,c,2);
-    					revelaZona(f+1,c);
-    					hundida_abajo = compruebaHundida(f+1,c);
-    					
-    				}
-    			}
+    		else if(tableroJuego[f+1][c].getEstado() == 1 && tableroJuego[f+1][c].getRevelada()) {
+				if(tableroJuego[f+1][c].getVisitada() == false) {
+					tableroJuego[f+1][c].setVisitada();
+					fila.push(f + 1);
+					columna.push(c);
+					hundida_abajo = compruebaHundida(f+1,c);
+				}
     		}
+    		
     	}
     	//LADO IZQUIERDO
     	boolean hundida_izquierda = true;
@@ -113,18 +107,13 @@ public class Tablero {
     		if(tableroJuego[f][c-1].getEstado() == 1 && tableroJuego[f][c-1].getRevelada() == false) {
     			return false;
     		}
-    		else if(tableroJuego[f][c-1].getEstado() == 1){
-    			if(tableroJuego[f][c-1].getRevelada()) {
-    				
-    				if(tableroJuego[f][c-1].getVisitada() == false) {
-    					tableroJuego[f][c-1].setVisitada();
-    					setEstadoCasilla(f,c-1,2);
-    					revelaZona(f,c-1);
-    					hundida_izquierda = compruebaHundida(f,c-1);
-    					
-    				}
-    			}
-    			
+    		else if(tableroJuego[f][c-1].getEstado() == 1 && tableroJuego[f][c-1].getRevelada()){
+				if(tableroJuego[f][c-1].getVisitada() == false) {
+					tableroJuego[f][c-1].setVisitada();
+					fila.push(f);
+					columna.push(c -1);
+					hundida_izquierda = compruebaHundida(f,c-1);			
+				}
     		}
     	}
     	//LADO DERECHO
@@ -132,25 +121,35 @@ public class Tablero {
     	if(c+1 < 10) {
     		if(tableroJuego[f][c+1].getEstado() == 1 && tableroJuego[f][c+1].getRevelada() == false) {
     			return false;
+    			
     		}
-    		else if(tableroJuego[f][c+1].getEstado() == 1){
-    			if(tableroJuego[f][c+1].getRevelada()) {
-    				
-    				if(tableroJuego[f][c+1].getVisitada() == false) {
-    					tableroJuego[f][c+1].setVisitada();
-    					setEstadoCasilla(f,c+1,2);
-    					revelaZona(f,c+1);
-    					hundida_derecha = compruebaHundida(f,c+1);
-    				}
+    		else if(tableroJuego[f][c+1].getEstado() == 1 && tableroJuego[f][c+1].getRevelada()){
+				if(tableroJuego[f][c+1].getVisitada() == false) {
+					tableroJuego[f][c+1].setVisitada();
+					fila.push(f);
+					columna.push(c + 1);
+					hundida_derecha = compruebaHundida(f,c+1);
     			}
-   			
     		}
     	}
-    	if (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha) {
-    		setEstadoCasilla(f,c,2);
-    		revelaZona(f,c);
-    	}
-    	return (hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha);
+    	
+    		if(hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha) {
+    			
+    			while (!fila.empty()) {
+    				setEstadoCasilla(fila.peek(), columna.peek(), 2);
+    				revelaZona(fila.pop(), columna.pop());
+    			}
+    			return true;
+    		}else {
+    			for (int i = 0; i < FILAS; i ++) {
+    	    		for (int j = 0; j < COLUMNAS ; j ++) {
+    	    			tableroJuego[i][j].reset();
+    	    		}
+    	    	}
+    			return false;
+    		}
+
+
     }
     
     public void revelaZona(int f, int c) {
@@ -292,19 +291,32 @@ public class Tablero {
     	return totalBarcosVivos;
     }
     
-    
-    public void setBarcos(Scanner sc) {
-    	int barcosSets = 0;
-    	while (barcosSets != 10) {
-    		System.out.print("Donde quieres empezar a colocar el portaaviones?" + "\n");
-    		System.out.print("Introduce la fila:" + "\n");
-    		sc.nextInt();
-    		System.out.print("Introduce la columna:" + "\n");
-    		sc.nextInt();
-    		System.out.print("Introduce la orientación: (0: vertical, 1: horizontal)" + "\n");
-    		sc.nextInt();
+    public boolean setBarcos(int f, int c, int o, int b) {
+    	if (o == 0) {
+    		for (int i = 0; i != b; i ++) {
+    			if(!compruebaAislada(f + i, c)) {
+    				return false;
+    			}
+    		}
+    		for (int i = 0; i != b; i ++) {
+    			setEstadoCasilla(f + i, c, 1);
+    		}
+    		return true;
     	}
+    	if (o == 1) {
+    		for (int i = 0; i != b; i ++) {
+    			if(!compruebaAislada(f, c + i)) {
+    				return false;
+    			}
+    		}
+    		for (int i = 0; i != b; i ++) {
+    			setEstadoCasilla(f, c + i, 1);
+    		}
+    		return true;
+    	}
+    	return false;
     }
+    
     
    public boolean compruebaPosicionValida(int f, int c){
 	   if(f < 0 || f > 9 || c < 0 || c > 9) {

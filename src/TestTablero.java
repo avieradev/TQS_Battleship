@@ -371,5 +371,10 @@ public class TestTablero {
     public void testSetBarcosAleatorios() {
     	
     }
-
+    @Test
+    public void testSetBarcos() {
+    	
+    	assertTrue(tableroPrueba.setBarcos(1,1,1, 1));
+    	
+    }
 }

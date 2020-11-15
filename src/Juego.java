@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Juego {
@@ -28,7 +29,26 @@ public class Juego {
 		if(eleccion == 0) {
 			tablero1.setBarcosAleatorios();
 		}else{
-			tablero1.setBarcos(sc);
+			boolean barcoSeteado = false;
+			System.out.println("Vamos a colocar los barcos!");
+			do {
+				try {
+					System.out.println("Empezemos por el portaaviones.");
+					System.out.println("Indica la fila.");
+					int fila = sc.nextInt();
+					System.out.println("Indica la columna.");
+					int columna = sc.nextInt();
+					System.out.println("Elige una orientación. (0: vertical, 1: horizontal)");
+					int orientacion = sc.nextInt();
+					barcoSeteado = tablero1.setBarcos(fila, columna, orientacion, 5);
+				}catch(InputMismatchException ime) {
+					System.out.println("¡Cuidado! Solo puedes insertar números. ");
+					sc.next();
+				}
+			}while(!barcoSeteado);
+			
+			
+			tablero1.setBarcos(1,1,1, 1);
 		} 
 		//VARIABLES 
 		int fila = 0;

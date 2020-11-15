@@ -188,6 +188,7 @@ public class TestTablero {
     	tableroPrueba.resetCasilla(0, 0);
     	
     }
+    
     @Test //PRUEBAS DE CAJA BLANCA PARA COMPLETAR COVERAGE
     public void testCompruebaHundida() {
     	
@@ -308,9 +309,10 @@ public class TestTablero {
     	
     }
     
-    @Test
+    @Test //TEST CAJA NEGRA COMPRUEBA COMPORTAMIENTO CORRECTO
     public void testRevelaZonaNegra() {
     	
+    	//COMPROBAMOS ESQUINAS
     	assertTrue(tableroPrueba.revelaZona(0,0));
     	
     	assertTrue(tableroPrueba.revelaZona(0,9));
@@ -318,7 +320,8 @@ public class TestTablero {
     	assertTrue(tableroPrueba.revelaZona(9,0));
 
     	assertTrue(tableroPrueba.revelaZona(9,9));
-
+    	
+    	//COMPROBAMOS BORDES
     	assertTrue(tableroPrueba.revelaZona(0,5));
     	
     	assertTrue(tableroPrueba.revelaZona(9,5));
@@ -327,17 +330,18 @@ public class TestTablero {
     	
     	assertTrue(tableroPrueba.revelaZona(5,9));
     	
+    	//COMPROBAMOS CASILLA IMPOSIBLE
     	assertFalse(tableroPrueba.revelaZona(11, 24));
     }
     
-    @Test
+    @Test //TEST CAJA BLANCA PARA CUBRIR
     public void testRevelaZona() {
 
     	assertTrue(tableroPrueba.revelaZona(5,5));
  
     }
     
-    @Test
+    @Test //TEST CAJA NEGRA COMPRUEBA OUTPUT CORRECTO
     public void testCompruebaPosicionValida()
     {
     	//SOBREPASA LIMITES
@@ -349,9 +353,17 @@ public class TestTablero {
     	//YA ESTA REVELADA
     	tableroPrueba.setCasillaRevelada(0, 0);
     	assertFalse(tableroPrueba.compruebaPosicionValida(0, 0));
+    	tableroPrueba.resetCasilla(0,0);
     	
     	//CORRECTA
     	assertTrue(tableroPrueba.compruebaPosicionValida(5, 5));
+    	
+    	//ESQUINAS
+    	assertTrue(tableroPrueba.compruebaPosicionValida(0, 0));
+    	assertTrue(tableroPrueba.compruebaPosicionValida(0, 9));
+    	assertTrue(tableroPrueba.compruebaPosicionValida(9, 0));
+    	assertTrue(tableroPrueba.compruebaPosicionValida(9, 9));
+    	
     }
     
     @Test
@@ -508,10 +520,7 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(6, 6, 0);
     }
     
-    //@Test
-    public void testSetBarcosAleatorios() {
-    	
-    }
+  
     @Test
     public void testSetBarcos() {
     	

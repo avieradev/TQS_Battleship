@@ -308,76 +308,33 @@ public class TestTablero {
     	
     }
     
+    @Test
+    public void testRevelaZonaNegra() {
+    	
+    	assertTrue(tableroPrueba.revelaZona(0,0));
+    	
+    	assertTrue(tableroPrueba.revelaZona(0,9));
+    	
+    	assertTrue(tableroPrueba.revelaZona(9,0));
+
+    	assertTrue(tableroPrueba.revelaZona(9,9));
+
+    	assertTrue(tableroPrueba.revelaZona(0,5));
+    	
+    	assertTrue(tableroPrueba.revelaZona(9,5));
+    	
+    	assertTrue(tableroPrueba.revelaZona(5,0));
+    	
+    	assertTrue(tableroPrueba.revelaZona(5,9));
+    	
+    	assertFalse(tableroPrueba.revelaZona(11, 24));
+    }
     
     @Test
     public void testRevelaZona() {
-    	tableroPrueba.revelaZona(0,0);
-    	assertTrue(tableroPrueba.getCasillaRevelada(0,0));
-    	assertTrue(tableroPrueba.getCasillaRevelada(0,1));
-    	assertTrue(tableroPrueba.getCasillaRevelada(1,0));
-    	assertTrue(tableroPrueba.getCasillaRevelada(1,1));
-    	
-    	tableroPrueba.revelaZona(0,9);
-    	assertTrue(tableroPrueba.getCasillaRevelada(0,9));
-    	assertTrue(tableroPrueba.getCasillaRevelada(0,8));
-    	assertTrue(tableroPrueba.getCasillaRevelada(1,0));
-    	assertTrue(tableroPrueba.getCasillaRevelada(1,8));
-    	
-    	tableroPrueba.revelaZona(9,0);
-    	assertTrue(tableroPrueba.getCasillaRevelada(9,0));
-    	assertTrue(tableroPrueba.getCasillaRevelada(8,0));
-    	assertTrue(tableroPrueba.getCasillaRevelada(9,1));
-    	assertTrue(tableroPrueba.getCasillaRevelada(8,1));
-    	
-    	tableroPrueba.revelaZona(9,9);
-    	assertTrue(tableroPrueba.getCasillaRevelada(9,9));
-    	assertTrue(tableroPrueba.getCasillaRevelada(8,9));
-    	assertTrue(tableroPrueba.getCasillaRevelada(9,8));
-    	assertTrue(tableroPrueba.getCasillaRevelada(8,8));
-    	
-    	tableroPrueba.revelaZona(0,5);
-    	assertTrue(tableroPrueba.getCasillaRevelada(0,4));
-    	assertTrue(tableroPrueba.getCasillaRevelada(0,5));
-    	assertTrue(tableroPrueba.getCasillaRevelada(0,6));
-    	assertTrue(tableroPrueba.getCasillaRevelada(1,4));
-    	assertTrue(tableroPrueba.getCasillaRevelada(1,5));
-    	assertTrue(tableroPrueba.getCasillaRevelada(1,6));
-    	
-    	tableroPrueba.revelaZona(9,5);
-    	assertTrue(tableroPrueba.getCasillaRevelada(9,4));
-    	assertTrue(tableroPrueba.getCasillaRevelada(9,5));
-    	assertTrue(tableroPrueba.getCasillaRevelada(9,6));
-    	assertTrue(tableroPrueba.getCasillaRevelada(8,4));
-    	assertTrue(tableroPrueba.getCasillaRevelada(8,5));
-    	assertTrue(tableroPrueba.getCasillaRevelada(8,6));
-    	
-    	tableroPrueba.revelaZona(5,0);
-    	assertTrue(tableroPrueba.getCasillaRevelada(4,0));
-    	assertTrue(tableroPrueba.getCasillaRevelada(5,0));
-    	assertTrue(tableroPrueba.getCasillaRevelada(6,0));
-    	assertTrue(tableroPrueba.getCasillaRevelada(4,1));
-    	assertTrue(tableroPrueba.getCasillaRevelada(5,1));
-    	assertTrue(tableroPrueba.getCasillaRevelada(6,1));
-    	
-    	tableroPrueba.revelaZona(5,9);
-    	assertTrue(tableroPrueba.getCasillaRevelada(4,9));
-    	assertTrue(tableroPrueba.getCasillaRevelada(5,9));
-    	assertTrue(tableroPrueba.getCasillaRevelada(6,9));
-    	assertTrue(tableroPrueba.getCasillaRevelada(4,8));
-    	assertTrue(tableroPrueba.getCasillaRevelada(5,8));
-    	assertTrue(tableroPrueba.getCasillaRevelada(6,8));
-    	
-    	tableroPrueba.revelaZona(5,5);
-    	assertTrue(tableroPrueba.getCasillaRevelada(4,4));
-    	assertTrue(tableroPrueba.getCasillaRevelada(4,5));
-    	assertTrue(tableroPrueba.getCasillaRevelada(4,6));
-    	assertTrue(tableroPrueba.getCasillaRevelada(5,4));
-    	assertTrue(tableroPrueba.getCasillaRevelada(5,5));
-    	assertTrue(tableroPrueba.getCasillaRevelada(5,6));
-    	assertTrue(tableroPrueba.getCasillaRevelada(6,4));
-    	assertTrue(tableroPrueba.getCasillaRevelada(6,5));
-    	assertTrue(tableroPrueba.getCasillaRevelada(6,6));
-    	
+
+    	assertTrue(tableroPrueba.revelaZona(5,5));
+ 
     }
     
     @Test

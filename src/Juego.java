@@ -25,6 +25,7 @@ public class Juego {
 				eleccion = sc.nextInt();				
 			}
 		}while(!eleccionValida);
+		
 		Tablero tablero1 = new Tablero();
 		if(eleccion == 0) {
 			tablero1.setBarcosAleatorios();
@@ -86,7 +87,6 @@ public class Juego {
 				//SI ES HUNDIDO
 				if(hundida == true) {
 					totalBarcos--;
-					//tablero1.revelaZona(fila, columna);
 				}
 			}
 		}

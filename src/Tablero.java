@@ -69,87 +69,164 @@ public class Tablero {
     }
     
     public boolean compruebaHundida(int f, int c) {
-
-    	//FILA SUPERIOR
-    	boolean hundida_arriba = true;
-    	if(f-1 >= 0) {
-    		if(tableroJuego[f-1][c].getEstado() == 1 && tableroJuego[f-1][c].getRevelada() == false) {
-    			return false;
+    	//SABEMOS QUE COMO MUCHO HARÁ +4 ARRIBA/ABAJO O +4 DERECHA/IZQUIERDA
+    	
+    	int i = 1;
+    	int direccion = 0; //0DERECHA 1IZQUIERDA 2ABAJO 3ARRIBA
+    	int desplazamiento = 0;
+    	boolean derecha = false;
+    	boolean izquierda = false;
+    	boolean arriba = false;
+    	boolean abajo= false;
+    	//MIRAMOS SI VA A LA DERECHA
+    	while ( i <= 4) {
+    		if(c+i>=10) {
+    			derecha = true;
+    			if (i > 1) {
+    				direccion = 0;
+    				desplazamiento = i;
+    			}
+    			break; //NOS PASAMOS POR LA DERECHA
     		}
-    		else if(tableroJuego[f-1][c].getEstado() == 1 && tableroJuego[f-1][c].getRevelada()){
-    			if(tableroJuego[f-1][c].getVisitada() == false) {
-    				tableroJuego[f-1][c].setVisitada();
-    				fila.push(f - 1);
-    				columna.push(c);
-    				hundida_arriba = compruebaHundida(f-1,c);
+    		else {
+    			if(tableroJuego[f][c+i].getEstado() == 1) {
+    				if(tableroJuego[f][c+i].getRevelada()){
+    					i++;
+    				}
+    				else {
+    					derecha = false;
+    					break;
     				}
     			}
-    	}
-    	//FILA INFERIOR
-    	boolean hundida_abajo = true;
-    	if(f+1 < 10) {
-    		if(tableroJuego[f+1][c].getEstado() == 1 && tableroJuego[f+1][c].getRevelada() == false) {
-    			return false;
-    		}
-    		else if(tableroJuego[f+1][c].getEstado() == 1 && tableroJuego[f+1][c].getRevelada()) {
-				if(tableroJuego[f+1][c].getVisitada() == false) {
-					tableroJuego[f+1][c].setVisitada();
-					fila.push(f + 1);
-					columna.push(c);
-					hundida_abajo = compruebaHundida(f+1,c);
-				}
-    		}
-    		
-    	}
-    	//LADO IZQUIERDO
-    	boolean hundida_izquierda = true;
-    	if(c-1 >= 0) {
-    		if(tableroJuego[f][c-1].getEstado() == 1 && tableroJuego[f][c-1].getRevelada() == false) {
-    			return false;
-    		}
-    		else if(tableroJuego[f][c-1].getEstado() == 1 && tableroJuego[f][c-1].getRevelada()){
-				if(tableroJuego[f][c-1].getVisitada() == false) {
-					tableroJuego[f][c-1].setVisitada();
-					fila.push(f);
-					columna.push(c -1);
-					hundida_izquierda = compruebaHundida(f,c-1);			
-				}
+    			else{
+    				if (i > 1) {
+        				direccion = 0;
+        				desplazamiento = i;
+        			}
+    				derecha = true;
+    				break;
+    			}
     		}
     	}
-    	//LADO DERECHO
-    	boolean hundida_derecha = true;
-    	if(c+1 < 10) {
-    		if(tableroJuego[f][c+1].getEstado() == 1 && tableroJuego[f][c+1].getRevelada() == false) {
-    			return false;
-    			
+    	//MIRAMOS SI VA A LA IZQUIERDA
+    	i = 1;
+    	while ( i <= 4) {
+    		if(c-i < 0) {
+    			if (i > 1) {
+    				direccion = 1;
+    				desplazamiento = i;
+    			}
+    			izquierda = true;
+    			break; //NOS PASAMOS POR LA IZQUIERDA
     		}
-    		else if(tableroJuego[f][c+1].getEstado() == 1 && tableroJuego[f][c+1].getRevelada()){
-				if(tableroJuego[f][c+1].getVisitada() == false) {
-					tableroJuego[f][c+1].setVisitada();
-					fila.push(f);
-					columna.push(c + 1);
-					hundida_derecha = compruebaHundida(f,c+1);
+    		else {
+    			if(tableroJuego[f][c-i].getEstado() == 1) {
+    				if(tableroJuego[f][c-i].getRevelada()){
+    					i++;//SEGUIMOS
+    				}
+    				else {//AUN HAY UNA POR REVELARA
+    					izquierda = false;
+    					break;
+    				}
+    			}
+    			else{//HA ENCONTRADO AGUA
+    				if (i > 1) {
+        				direccion = 1;
+        				desplazamiento = i;
+        			}
+    				izquierda = true;
+    				break;
     			}
     		}
     	}
     	
-    		if(hundida_abajo && hundida_arriba && hundida_izquierda && hundida_derecha) {
-    			
-    			while (!fila.empty()) {
-    				setEstadoCasilla(fila.peek(), columna.peek(), 2);
-    				revelaZona(fila.pop(), columna.pop());
+    	//MIRAMOS SI VA ABAJO
+    	i = 1;
+    	while ( i <= 4) {
+    		if(f+i>=10) {
+    			if (i > 1) {
+    				direccion = 2;
+    				desplazamiento = i;
     			}
-    			return true;
-    		}else {
-    			for (int i = 0; i < FILAS; i ++) {
-    	    		for (int j = 0; j < COLUMNAS ; j ++) {
-    	    			tableroJuego[i][j].reset();
-    	    		}
-    	    	}
-    			return false;
+    			abajo = true;
+    			break; //NOS PASAMOS POR ABAJO
     		}
-
-
+    		else {
+    			if(tableroJuego[f+i][c].getEstado() == 1) {
+    				if(tableroJuego[f+i][c].getRevelada()){
+    					i++;
+    				}
+    				else {
+    					abajo = false;
+    					break;
+    				}
+    			}
+    			else{
+    				if (i > 1) {
+        				direccion = 2;
+        				desplazamiento = i;
+        			}
+    				abajo = true;
+    				break;
+    			}
+    		}
+    	}
+    		
+		//MIRAMOS SI VA ARRIBA
+    	i = 1;
+    	while ( i <= 4) {
+    		if(f-i < 0) {
+    			if (i > 1) {
+    				direccion = 3;
+    				desplazamiento = i;
+    			}
+    			arriba = true;
+    			break; //NOS PASAMOS POR ABAJO
+    		}
+    		else {
+    			if(tableroJuego[f-i][c].getEstado() == 1) {
+    				if(tableroJuego[f-i][c].getRevelada()){
+    					i++;
+    				}
+    				else {
+    					arriba = false;
+    					break;
+    				}
+    			}
+    			else{
+    				
+    				if (i > 1) {
+        				direccion = 3;
+        				desplazamiento = i;
+        			}
+    				arriba = true;
+    				break;
+    			}
+    		}
+    	}
+    	if(izquierda && derecha && abajo && arriba) {
+    		tableroJuego[f][c].setEstado(2);
+    		revelaZona(f, c);
+    		for(int j = 1; j < desplazamiento; j++) {
+    			if (direccion == 0) {
+    				tableroJuego[f][c+j].setEstado(2);
+    				revelaZona(f, c+j);
+    			}
+    			if (direccion == 1) {
+    				tableroJuego[f][c-j].setEstado(2);
+    				revelaZona(f, c-j);
+    			}
+    			if (direccion == 2) {
+    				tableroJuego[f+j][c].setEstado(2);
+    				revelaZona(f+j, c);
+    			}
+    			if (direccion == 3) {
+    				tableroJuego[f-j][c].setEstado(2);
+    				revelaZona(f-j,c);
+    			}
+    		}
+    	}
+    	return (izquierda && derecha && abajo && arriba);	
     }
     
     public void revelaZona(int f, int c) {

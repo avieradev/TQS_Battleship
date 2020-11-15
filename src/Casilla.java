@@ -34,7 +34,9 @@ public class Casilla {
             }
             
             public void reset(){
-            	this.visitada = false;
+            	this.revelada = false;
+                this.visitada = false;
+                this.estado = 0;
             }
             
             

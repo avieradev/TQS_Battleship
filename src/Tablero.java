@@ -75,7 +75,7 @@ public class Tablero {
     	boolean arriba = false;
     	boolean abajo= false;
     	//MIRAMOS SI VA A LA DERECHA
-    	while ( i <= 4) {
+    	while ( i <= 5) {
     		if(c+i>=10) {
     			derecha = true;
     			if (i > 1) {
@@ -104,9 +104,12 @@ public class Tablero {
     			}
     		}
     	}
+    	if(i > 5) {
+    		return false;
+    	}
     	//MIRAMOS SI VA A LA IZQUIERDA
     	i = 1;
-    	while ( i <= 4) {
+    	while ( i <= 5) {
     		if(c-i < 0) {
     			if (i > 1) {
     				direccion = 1;
@@ -135,10 +138,12 @@ public class Tablero {
     			}
     		}
     	}
-    	
+    	if(i > 5) {
+    		return false;
+    	}
     	//MIRAMOS SI VA ABAJO
     	i = 1;
-    	while ( i <= 4) {
+    	while ( i <= 5) {
     		if(f+i>=10) {
     			if (i > 1) {
     				direccion = 2;
@@ -167,10 +172,12 @@ public class Tablero {
     			}
     		}
     	}
-    		
+    	if(i > 5) {
+    		return false;
+    	}
 		//MIRAMOS SI VA ARRIBA
     	i = 1;
-    	while ( i <= 4) {
+    	while ( i <= 5) {
     		if(f-i < 0) {
     			if (i > 1) {
     				direccion = 3;
@@ -199,6 +206,9 @@ public class Tablero {
     				break;
     			}
     		}
+    	}
+    	if(i > 5) {
+    		return false;
     	}
     	if(izquierda && derecha && abajo && arriba) {
     		tableroJuego[f][c].setEstado(2);

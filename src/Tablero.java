@@ -386,6 +386,9 @@ public class Tablero {
     
     
     public boolean setBarcos(int f, int c, int o, int b) {
+    	if (b > 5 || b <2) {
+    		return false;
+    	}
     	if (o == 0) {
     		for (int i = 0; i != b; i ++) {
     			if(!compruebaAislada(f + i, c)) {

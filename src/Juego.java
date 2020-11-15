@@ -34,7 +34,7 @@ public class Juego {
 			System.out.println("Vamos a colocar los barcos!");
 			do {
 				try {
-					System.out.println("Empezemos por el portaaviones.");
+					System.out.println("Empezemos por el portaaviones. (tamaño 5)");
 					System.out.println("Indica la fila.");
 					int fila = sc.nextInt();
 					System.out.println("Indica la columna.");

@@ -525,10 +525,25 @@ public class TestTablero {
     	tableroPrueba.setEstadoCasilla(6, 6, 0);
     }
   
-    @Test
-    public void testSetBarcos() {
+    @Test //TEST CAJA NEGRA COMPRUEBA OUTPUT CORRECTO
+    public void testSetBarcosNegra() {
     	
-    	assertTrue(tableroPrueba.setBarcos(1,1,1, 1));
+    	//BARCOS TAMAÑO ANORMAL
+    	assertFalse(tableroPrueba.setBarcos(1,1,1,7));
+    	assertFalse(tableroPrueba.setBarcos(1,1,1,0));
+    	
+    	//CREAR BARCOS EN ESQUINAS
+    	assertTrue(tableroPrueba.setBarcos(0,0,1,3));
+    	assertFalse(tableroPrueba.setBarcos(0,0,0,3));
+    	assertFalse(tableroPrueba.setBarcos(0,9,1,3));
+    	assertTrue(tableroPrueba.setBarcos(0,9,0,3));
+    	assertTrue(tableroPrueba.setBarcos(9,0,1,3));
+    	assertFalse(tableroPrueba.setBarcos(9,0,0,3));
+    	assertFalse(tableroPrueba.setBarcos(9,9,1,3));
+    	assertFalse(tableroPrueba.setBarcos(9,9,0,3));
+    	
+    	//ORIENTACION INCORRECTA
+    	assertFalse(tableroPrueba.setBarcos(0,0,4,3));
     	
     }
 }

@@ -11,14 +11,11 @@ public class Tablero {
     protected int totalBarcos = 5;
     
     public Tablero() {
-
-    	
     	for (int f = 0; f < FILAS; f ++) {
     		for (int c = 0; c < COLUMNAS ; c ++) {
     			tableroJuego[f][c] = new Casilla();
     		}
     	}
- 
     }
 
     public int getEstadoCasilla(int f, int c) {

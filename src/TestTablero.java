@@ -14,9 +14,12 @@ public class TestTablero {
     public void tearDown() throws Exception {
     }
     
-    @Test
+    @Test //TEST CAJA NEGRA COMPRUEBA OUTPUT CORRECTO
     public void testCreacionTablero() {
-        assertEquals(tableroPrueba.getEstadoCasilla(1,1), 0);
+        assertEquals(tableroPrueba.getEstadoCasilla(0,0), 0);
+        assertEquals(tableroPrueba.getEstadoCasilla(0,9), 0);
+        assertEquals(tableroPrueba.getEstadoCasilla(9,0), 0);
+        assertEquals(tableroPrueba.getEstadoCasilla(9,9), 0);
     }
     
     @Test

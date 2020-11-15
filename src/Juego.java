@@ -79,7 +79,7 @@ public class Juego {
 			//DESVELAR CASILLA
 			tablero1.setCasillaRevelada(fila, columna);
 			estado = tablero1.getEstadoCasilla(fila, columna);
-			
+		 
 			//SI ES BARCO
 			if (estado == 1) {
 				hundida = tablero1.compruebaHundida(fila, columna);

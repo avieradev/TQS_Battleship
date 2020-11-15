@@ -211,6 +211,7 @@ public class Tablero {
     		return false;
     	}
     	if(izquierda && derecha && abajo && arriba) {
+    		boolean revelado;
     		tableroJuego[f][c].setEstado(2);
     		revelaZona(f, c);
     		for(int j = 1; j < desplazamiento; j++) {
@@ -235,38 +236,30 @@ public class Tablero {
     	return (izquierda && derecha && abajo && arriba);	
     }
     
-    public boolean revelaZona(int f, int c) {
-    	
-    	boolean valid = false;
-    	valid = compruebaPosicionValida(f,c);
-    	if (!valid) {
-    		return false;
-    	}
+    public void revelaZona(int f, int c) {
+
     	setCasillaRevelada(f,c);
     	//COMPROBACION ESQUINAS
     	if(f == 0 && c == 0) {
     		setCasillaRevelada(f + 1, c);
     		setCasillaRevelada(f, c+1);
     		setCasillaRevelada(f+1, c+1);
-    		return true;
+    		
     	}
     	else if(f == 9 && c == 9) {
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f, c-1);
     		setCasillaRevelada(f-1, c-1);
-    		return true;
     	}
     	else if(f == 0 && c == 9) {
     		setCasillaRevelada(f + 1, c);
     		setCasillaRevelada(f, c-1);
     		setCasillaRevelada(f+1, c-1);
-    		return true;
     	}
     	else if(f == 9 && c == 0) {
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f, c+1);
     		setCasillaRevelada(f-1, c+1);
-    		return true;
     	}
     	//COMPROBACION ARRIBA ABAJO
     	else if(f == 0) {
@@ -275,7 +268,6 @@ public class Tablero {
     		setCasillaRevelada(f, c + 1);
     		setCasillaRevelada(f +1, c -1);
     		setCasillaRevelada(f+1, c + 1);
-    		return true;
     	}
     	else if(f == 9) {
     		setCasillaRevelada(f - 1, c);
@@ -283,7 +275,6 @@ public class Tablero {
     		setCasillaRevelada(f, c + 1);
     		setCasillaRevelada(f-1, c -1);
     		setCasillaRevelada(f-1, c + 1);
-    		return true;
     	}
     	//COMPROBACION DERECHA IZQUIERDA
     	else if(c == 0) {
@@ -292,7 +283,6 @@ public class Tablero {
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f +1, c +1);
     		setCasillaRevelada(f-1, c + 1);
-    		return true;
     	}
     	else if(c == 9) {
     		setCasillaRevelada(f, c - 1);
@@ -300,7 +290,6 @@ public class Tablero {
     		setCasillaRevelada(f - 1, c);
     		setCasillaRevelada(f +1, c -1); 
     		setCasillaRevelada(f-1, c - 1);
-    		return true;
     	}
     	else{
     	setCasillaRevelada(f - 1, c);
@@ -311,10 +300,7 @@ public class Tablero {
     	setCasillaRevelada(f + 1, c - 1);
     	setCasillaRevelada(f - 1, c + 1);
     	setCasillaRevelada(f - 1, c - 1);
-    	return true;
     	}
-    	
-    	
     }
     
     public void setBarcosAleatorios() {

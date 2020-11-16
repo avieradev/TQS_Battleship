@@ -1,4 +1,6 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,8 +16,13 @@ public class TestJuego {
 	public void tearDown() throws Exception {
 	}
 
-	//@Test
+	@Test
 	public void testVictoria() {
-		//assertTrue(juegoPrueba.comprobaFinal());
+		assertFalse(juegoPrueba.compruebaGanador());
 	}
+	@Test
+	public void testInicializar() {
+		assertTrue(juegoPrueba.inicializar());
+	}
+	
 } 

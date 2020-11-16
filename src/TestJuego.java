@@ -2,6 +2,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,7 +18,7 @@ public class TestJuego {
 	Jugador jugador2 = new Jugador("Maquina");
 	Tablero tablero2 = new Tablero(); //DONDE LOS PONDRA LA MAQUINA
 	Scanner sc = new Scanner(System.in);
-	InterficieJugador jugadorPrueba = new mockobjectJugador();
+	
 	
 	@Before
 	public void setUp() throws Exception {
@@ -43,8 +45,51 @@ public class TestJuego {
 	
 	@Test
 	public void testInicializacionPortaaviones() {
+		ArrayList<Integer> array_filas =    new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 0));
+		ArrayList<Integer> array_columnas = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4));
+		ArrayList<Integer> array_orientacion = new ArrayList<Integer>(Arrays.asList(1,1,1,1,0,1,0,1,0,0));
+		InterficieJugador jugadorPrueba = new mockobjectJugador(array_filas, array_columnas, array_orientacion);
 		assertTrue(juegoPrueba.inicializacionPortaaviones(sc, jugadorPrueba, tablero1));
 	}
+
+	@Test
+	public void testInicializacionBuques() {
+		ArrayList<Integer> array_filas =    new ArrayList<Integer>(Arrays.asList(0, 2, 3, 4, 5));
+		ArrayList<Integer> array_columnas = new ArrayList<Integer>(Arrays.asList(0, 2, 3, 4, 5));
+		ArrayList<Integer> array_orientacion = new ArrayList<Integer>(Arrays.asList(1,1,1,1,0,1,0,1,0,0));
+		InterficieJugador jugadorPrueba = new mockobjectJugador(array_filas, array_columnas, array_orientacion);
+		assertFalse(juegoPrueba.inicializacionBuques(sc, jugadorPrueba, tablero1));
+	}
+	
+	@Test
+	public void testInicializacionSubmarinos() {
+		ArrayList<Integer> array_filas =    new ArrayList<Integer>(Arrays.asList(0, 2, 3, 4, 5));
+		ArrayList<Integer> array_columnas = new ArrayList<Integer>(Arrays.asList(0, 2, 3, 4, 5));
+		ArrayList<Integer> array_orientacion = new ArrayList<Integer>(Arrays.asList(1,1,1,1,0,1,0,1,0,0));
+		InterficieJugador jugadorPrueba = new mockobjectJugador(array_filas, array_columnas, array_orientacion);
+		assertFalse(juegoPrueba.inicializacionSubmarinos(sc, jugadorPrueba, tablero1));
+	}
+	
+	@Test
+	public void testInicializacionCruceros() {
+		ArrayList<Integer> array_filas =    new ArrayList<Integer>(Arrays.asList(0, 2, 3, 4, 5));
+		ArrayList<Integer> array_columnas = new ArrayList<Integer>(Arrays.asList(0, 2, 3, 4, 5));
+		ArrayList<Integer> array_orientacion = new ArrayList<Integer>(Arrays.asList(1,1,1,1,0,1,0,1,0,0));
+		InterficieJugador jugadorPrueba = new mockobjectJugador(array_filas, array_columnas, array_orientacion);
+		assertFalse(juegoPrueba.inicializacionCruceros(sc, jugadorPrueba, tablero1));
+	}
+	
+	@Test
+	public void testInicializacionLanchas() {
+		ArrayList<Integer> array_filas =    new ArrayList<Integer>(Arrays.asList(0, 2, 3, 4, 5));
+		ArrayList<Integer> array_columnas = new ArrayList<Integer>(Arrays.asList(0, 2, 3, 4, 5));
+		ArrayList<Integer> array_orientacion = new ArrayList<Integer>(Arrays.asList(1,1,1,1,0,1,0,1,0,0));
+		InterficieJugador jugadorPrueba = new mockobjectJugador(array_filas, array_columnas, array_orientacion);
+		assertFalse(juegoPrueba.inicializacionLanchas(sc, jugadorPrueba, tablero1));
+	}
+	
+	
+	
 	
 	
 	@Test
@@ -54,6 +99,10 @@ public class TestJuego {
 	
 	@Test
 	public void testTurnoJugador() {
+		ArrayList<Integer> array_filas =    new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 0));
+		ArrayList<Integer> array_columnas = new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4));
+		ArrayList<Integer> array_orientacion = new ArrayList<Integer>(Arrays.asList(1,1,1,1,0,1,0,1,0,0));
+		InterficieJugador jugadorPrueba = new mockobjectJugador(array_filas, array_columnas, array_orientacion);
 		assertTrue(juegoPrueba.turnoJugador(jugadorPrueba, tablero1, sc));
 	}
 	

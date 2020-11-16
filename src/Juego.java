@@ -170,11 +170,11 @@ public class Juego {
 			do {
 				try {
 					System.out.println("Indica la fila.");
-					int fila = sc.nextInt();
+					int fila = jugador1.insertaFila(sc);
 					System.out.println("Indica la columna.");
-					int columna = sc.nextInt();
+					int columna = jugador1.insertaColumna(sc);
 					System.out.println("Elige una orientación. (0: vertical, 1: horizontal)");
-					int orientacion = sc.nextInt();
+					int orientacion = jugador1.insertaOrientacion(sc);
 					lancha = tablero1.setBarcos(fila, columna, orientacion, 1);
 				}catch(InputMismatchException ime) {
 					System.out.println("¡Cuidado! Solo puedes insertar números. ");

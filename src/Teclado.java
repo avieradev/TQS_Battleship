@@ -2,5 +2,6 @@
 public interface Teclado {
 	public int getFila();
 	public int getColumna();
-	public void setFilaColumna();
+	public int getOrientacion();
+	public void setFilaColumnaOrientacion();
 }

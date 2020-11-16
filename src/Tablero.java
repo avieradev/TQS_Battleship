@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Tablero {
+public class Tablero implements InterficieTablero {
 	final int FILAS = 10, COLUMNAS = 10;
 	final int PORTAAVIONES = 5, BUQUE = 4, SUBMARINO = 3, CRUCERO = 2, LANCHA = 1;
 	Stack<Integer> fila = new Stack<Integer>();
@@ -373,6 +373,9 @@ public class Tablero {
     
     public boolean setBarcos(int f, int c, int o, int b) {
     	if (b > 5 || b <2) {
+    		return false;
+    	}
+    	if(!compruebaPosicionValida(f,  c)) {
     		return false;
     	}
     	if (o == 0) {

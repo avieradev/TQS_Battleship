@@ -5,6 +5,7 @@ public class Juego {
 	static int totalBarcos = 10;
 	static int fila;
 	static int columna;
+	static int orientacion;
 	static int estado;
 	static boolean hundida;
 	static int turnos;
@@ -17,6 +18,7 @@ public class Juego {
 	public Juego() {
 		fila = 0;
 		columna = 0;
+		orientacion = 0;
 		estado = 0;
 		hundida = false;
 		turnos = 0;
@@ -49,12 +51,9 @@ public class Juego {
 				System.out.println("Empezemos por el portaaviones. (tamaño 5)");
 				do {
 					try {
-						System.out.println("Indica la fila.");
-						int fila = sc.nextInt();
-						System.out.println("Indica la columna.");
-						int columna = sc.nextInt();
-						System.out.println("Elige una orientación. (0: vertical, 1: horizontal)");
-						int orientacion = sc.nextInt();
+						fila = jugador1.insertaFila(sc);
+						columna = jugador1.insertaColumna(sc);
+						orientacion = jugador1.insertaOrientacion(sc);
 						portaaviones = tablero1.setBarcos(fila, columna, orientacion, 5);
 					}catch(InputMismatchException ime) {
 						System.out.println("¡Cuidado! Solo puedes insertar números. ");
@@ -69,12 +68,9 @@ public class Juego {
 					boolean buque = false;
 					do {
 						try {
-							System.out.println("Indica la fila.");
-							int fila = sc.nextInt();
-							System.out.println("Indica la columna.");
-							int columna = sc.nextInt();
-							System.out.println("Elige una orientación. (0: vertical, 1: horizontal)");
-							int orientacion = sc.nextInt();
+							fila = jugador1.insertaFila(sc);
+							columna = jugador1.insertaColumna(sc);
+							orientacion = jugador1.insertaOrientacion(sc);
 							buque = tablero1.setBarcos(fila, columna, orientacion, 4);
 						}catch(InputMismatchException ime) {
 							System.out.println("¡Cuidado! Solo puedes insertar números. ");
@@ -90,12 +86,9 @@ public class Juego {
 					boolean submarino = false;
 					do {
 						try {
-							System.out.println("Indica la fila.");
-							int fila = sc.nextInt();
-							System.out.println("Indica la columna.");
-							int columna = sc.nextInt();
-							System.out.println("Elige una orientación. (0: vertical, 1: horizontal)");
-							int orientacion = sc.nextInt();
+							fila = jugador1.insertaFila(sc);
+							columna = jugador1.insertaColumna(sc);
+							orientacion = jugador1.insertaOrientacion(sc);
 							submarino = tablero1.setBarcos(fila, columna, orientacion, 3);
 						}catch(InputMismatchException ime) {
 							System.out.println("¡Cuidado! Solo puedes insertar números. ");
@@ -109,12 +102,9 @@ public class Juego {
 					boolean crucero = false;
 					do {
 						try {
-							System.out.println("Indica la fila.");
-							int fila = sc.nextInt();
-							System.out.println("Indica la columna.");
-							int columna = sc.nextInt();
-							System.out.println("Elige una orientación. (0: vertical, 1: horizontal)");
-							int orientacion = sc.nextInt();
+							fila = jugador1.insertaFila(sc);
+							columna = jugador1.insertaColumna(sc);
+							orientacion = jugador1.insertaOrientacion(sc);
 							crucero = tablero1.setBarcos(fila, columna, orientacion, 2);
 						}catch(InputMismatchException ime) {
 							System.out.println("¡Cuidado! Solo puedes insertar números. ");

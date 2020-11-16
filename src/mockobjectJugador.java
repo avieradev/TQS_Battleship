@@ -1,29 +1,38 @@
 import java.util.Scanner;
 
 public class mockobjectJugador implements InterficieJugador {
-	int [] valoresFila = {1,1,9,3,4,5,6,7,8,9};
-	int [] valoresColumna = {0,0,2,3,4,5,6,7,8,9};
+	int [] valoresFila =    {0, 0, 0, 0, 0};
+	int [] valoresColumna = {0, 1, 2, 3, 4};
 	int [] valoresOrientacion = {1,1,1,1,0,1,0,1,0,0};
 	public int fila;
 	public int columna;
 	public int orientacion;
 	int i = 0;
+	int j = 0;
+	int k = 0;
 	
 	public String getNombre() {
 		return ("MockPlayer");
 	}
 
 	public int insertaFila(Scanner sc) {
-		return valoresFila[i+1];
+		
+		i++;
+		return valoresFila[0+i];
+		
 	}
 
 
 	public int insertaColumna(Scanner sc) {
-		return valoresColumna[i+1];
+		j++;
+		return valoresColumna[0+j];
+		
 	}
 	
 	public int insertaOrientacion(Scanner sc) {
-		return valoresOrientacion[i+1];
+		k++;
+		return valoresOrientacion[0+k];
+		
 	}
 
 	public int insertaValorInicial(Scanner sc) {

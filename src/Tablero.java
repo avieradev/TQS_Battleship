@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Tablero implements InterficieTablero {
+public class Tablero{
 	final int FILAS = 10, COLUMNAS = 10;
 	final int PORTAAVIONES = 5, BUQUE = 4, SUBMARINO = 3, CRUCERO = 2, LANCHA = 1;
 	Stack<Integer> fila = new Stack<Integer>();
